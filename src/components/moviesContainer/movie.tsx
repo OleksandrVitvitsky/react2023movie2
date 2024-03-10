@@ -6,6 +6,8 @@ interface IProps extends PropsWithChildren {
 }
 
 const Movie: FC<IProps> = ({movie}) => {
+    const {id, genres, popularity, poster_path, title, release_date} = movie;
+    console.log(movie);
 
     return (
         <div>
