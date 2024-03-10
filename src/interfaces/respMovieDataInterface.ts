@@ -1,3 +1,5 @@
+import {IMovie} from "./movieInterface";
+
 export interface IResMovieState {
     page: number;
     results: IMovie[],

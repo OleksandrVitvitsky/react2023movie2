@@ -3,7 +3,10 @@ import {IResMovieState} from "../../interfaces";
 
 
 const initialState: IResMovieState = {
-    movies: IMovie[],
+    page: null,
+    results: [],
+    total_pages: null,
+    total_results: null
 
 };
 const movieSlice = createSlice(
