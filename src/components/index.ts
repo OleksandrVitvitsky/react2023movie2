@@ -1,2 +1,4 @@
 export * from './moviesContainer'
-export * from './header'
+export * from './headerContainer'
+export * from './filterContainer'
+
