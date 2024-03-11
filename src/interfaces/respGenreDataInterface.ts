@@ -1,5 +1,5 @@
 import {IGenre} from "./genreInterface";
 
-export interface IResGenreData {
-    genres: IGenre[]
+export interface IResGenreData<T> {
+    genres: T[]
 }

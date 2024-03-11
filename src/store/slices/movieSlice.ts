@@ -1,12 +1,11 @@
 import {AxiosError} from "axios";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {IResMovieState} from "../../interfaces";
+import {IMovie, IPagination,} from "../../interfaces";
 import {movieService} from "../../services";
 
 
-
-const initialState: IResMovieState = {
+const initialState: IPagination<IMovie> = {
     page: null,
     results: [],
     total_pages: null,
@@ -15,7 +14,7 @@ const initialState: IResMovieState = {
 };
 
 
-const getAll = createAsyncThunk<IResMovieState, { page: number }>(
+const getAll = createAsyncThunk<IPagination<IMovie>, { page: number }>(
     'movieSlice/getAll',
     async ({page}, {rejectWithValue}) => {
         try {
@@ -44,6 +43,7 @@ const movieSlice = createSlice(
                     state.total_pages = total_pages;
                     state.total_results = total_results;
                 })
+
     }
 );
 
