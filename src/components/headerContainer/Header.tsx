@@ -1,8 +1,13 @@
+import css from './header.module.css'
+
+
 const Header = () => {
     return (
-        <div>
-            Header
+        <div className={css.header}>
+            <a href="/" className={css.logo}><span>UA</span>Movies</a>
         </div>
+
+
     );
 };
 

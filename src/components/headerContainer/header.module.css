@@ -1,0 +1,34 @@
+.header {
+    padding: 20px 40px;
+    background-color: var(--header-bg-color-font);
+    border-radius: 20px 20px 0 0;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: none;
+}
+
+.logo {
+    display: block;
+    height: 50px;
+    color: #5a668c;
+    font-weight: 300;
+    margin-top: -10px;
+    font-size: 34px;
+    background: url('../../../public/icons/logo.svg') 0 center/40px no-repeat;
+    padding-left: 45px;
+    line-height: 60px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+
+}
+
+.logo span {
+    font-weight: 600;
+    color: var(--header-logo-color-1);
+}
+
+.header a:any-link {
+    cursor: pointer;
+}

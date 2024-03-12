@@ -1,16 +1,22 @@
 import {Outlet} from "react-router-dom";
-import {Filter, Header, MoviePagination} from "../components";
+import {Filter, Footer, Header} from "../components";
+import css from './mainLayout.module.css'
+
+
 
 const MainLayout = () => {
     return (
-        <div>
-            <Header/>
-            <Filter/>
-            <Outlet/>
-
+        <div className={css.wrap}>
+            <div className={css.wrapMain}>
+                <Header/>
+                <Filter/>
+                <Outlet/>
+                <Footer/>
+            </div>
         </div>
     );
 };
+
 
 export {
     MainLayout
