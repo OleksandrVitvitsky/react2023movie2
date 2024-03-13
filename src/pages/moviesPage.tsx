@@ -1,8 +1,9 @@
-import {MoviePagination, Movies} from "../components";
+import {Filter, MoviePagination, Movies} from "../components";
 
 const MoviesPage = () => {
     return (
         <div>
+            <Filter/>
             <Movies/>
             <MoviePagination/>
         </div>
