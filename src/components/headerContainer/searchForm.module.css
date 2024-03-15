@@ -5,7 +5,9 @@
     line-height: 28px;
     align-items: center;
     position: relative;
-    max-width: 190px;
+    width: 450px;
+    max-width: 450px;
+    margin: auto 20px;
 }
 
 .input {

@@ -1,11 +1,4 @@
 body {
-    --body-color: #193364;
-    --bg-color-1: #fff;
-    --a-color-1: #193364;
-    --header-bg-color-font: #f5f8ff;
-    --header-logo-color-1: #193364;
-
-
     background-image: url('../public/bg.jpg');
     background-attachment: fixed;
     /*background-size: cover;*/
@@ -30,4 +23,16 @@ code {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+:root{
+    /*--color-dark:#21213f;*/
+    /*--color-light:#ffffff;*/
+    --body-color: #193364;
+    --bg-color-1: #fff;
+    --a-color-1: #193364;
+
+    --header-logo-color-1: #193364;
+
+    --header-bg-color-light: #f5f8ff;
+    --header-bg-color-dark: #283043;
 }
