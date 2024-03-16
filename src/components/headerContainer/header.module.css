@@ -1,6 +1,5 @@
 .header {
     padding: 20px 40px;
-
     border-radius: 20px 20px 0 0;
     align-items: center;
     display: flex;
@@ -10,12 +9,19 @@
 .header [theme=dark]{
     background-color: var(  --header-bg-color-dark);
 }
+.headerFlexRightContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+}
 .header [theme=light]{
     background-color: var(  --header-bg-color-light);
 }
 .logo {
     display: block;
-    height: 50px;
+    height: 43px;
+    width: 20%;
     color: #5a668c;
     font-weight: 300;
     margin-top: -10px;

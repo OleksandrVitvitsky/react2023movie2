@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 import {Filter, Footer, Header} from "../components";
-import css from './mainLayout.module.css'
+import css from '../pages/homePage.module.css'
 
 
 

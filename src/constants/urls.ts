@@ -19,7 +19,7 @@ const urls = {
         base: genres
     },
     poster: {
-        base: (poster_path: string): string => `${poster_path}`
+        base: (poster_path: string): string => `${posterURL}${poster_path}`
     }
 
 }

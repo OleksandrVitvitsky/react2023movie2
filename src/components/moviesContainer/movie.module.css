@@ -1,0 +1,10 @@
+.movieContainer{
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.movieContainer img{
+    width: 100%;
+    height: auto;
+}

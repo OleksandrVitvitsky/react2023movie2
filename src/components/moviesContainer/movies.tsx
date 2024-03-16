@@ -4,7 +4,7 @@ import {useEffect} from "react";
 import {movieActions} from "../../store";
 import {useSearchParams} from "react-router-dom";
 import {Movie} from "./movie";
-
+import css from './movies.module.css'
 
 const Movies = () => {
 
@@ -20,7 +20,7 @@ const Movies = () => {
     }, [dispatch, page])
 
     return (
-        <div>
+        <div className={css.mainMoviesContainer}>
             {results.map(movie => <Movie key={movie.id} movie={movie}/>)}
         </div>
     );

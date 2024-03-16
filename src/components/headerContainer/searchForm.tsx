@@ -6,13 +6,7 @@ interface ISearch {
     querySearch: string
 
 }
-
-
-
 const SearchForm = () => {
-
-
-
 
     const {reset, register, handleSubmit} = useForm<ISearch>();
 
