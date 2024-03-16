@@ -9,6 +9,7 @@ const Header = () => {
             <a href="/" className={css.logo}><span>UA</span>Movies</a>
             <SearchForm/>
             <ThemeToggle/>
+             <ButtonAutorization/>
         </div>
 
 
