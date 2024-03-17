@@ -1,17 +1,41 @@
 .movieContainer{
-    width: 85%;
-    height: 300px;
+    max-width: 85%;
+    height: 400px;
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 0;
     justify-content: center;
 
 }
+
+@media (max-width: 1200px) {
+    .movieContainer {
+        max-width: 83%;
+    }
+}
+
+@media (max-width: 992px) {
+    .movieContainer {
+        max-width: 69%;
+    }
+}
+
+@media (max-width: 768px) {
+    .movieContainer {
+        max-width: 61%;
+    }
+}
+
+@media (max-width: 576px) {
+    .movieContainer {
+        max-width: 43%;
+    }
+}
 .movieContainer img {
     width: 100%;
     max-width: 100%;
     height: auto;
-
+    object-fit: cover;
     margin-bottom: 10px;
     display: block;
     border-radius: 10px;

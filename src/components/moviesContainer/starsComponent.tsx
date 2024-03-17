@@ -1,6 +1,11 @@
-import {StarRatings} from 'react-star-ratings'
 
-const StarsComponent = () => {
+import StarRatings from 'react-star-ratings'
+import {FC, PropsWithChildren} from "react";
+
+interface IProps extends PropsWithChildren {
+    rating: number
+}
+const StarsComponent : FC<IProps>  = ({rating}) => {
     return (
         <div>
             <StarRatings
@@ -9,8 +14,8 @@ const StarsComponent = () => {
                 // changeRating={(newRating) => console.log(newRating)}
                 numberOfStars={10}
                 name='rating'
-                starDimension='30px'
-                starSpacing='5px'
+                starDimension='18px'
+                starSpacing='1px'
             />
         </div>
     );

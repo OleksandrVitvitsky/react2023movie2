@@ -6,7 +6,8 @@
 }
 
 .wrapMain {
-    max-width: 40%;
+    /*max-width: 40%;*/
+    max-width: 1300px;
     background-color: var(--bg-color-1);
     border-radius: 20px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, .2);
@@ -15,18 +16,28 @@
     position: relative;
 }
 
-@media screen and (max-width: 1220px) {
 
+@media (max-width: 1200px) {
     .wrapMain {
-        max-width: 35%;
-
-    }
-
-    .wrap {
-        padding: 100px 0 40px;
-        overflow: hidden;
+        max-width: 1100px;
     }
 }
 
+@media (max-width: 992px) {
+    .wrapMain {
+        max-width: 990px;
+    }
+}
 
+@media (max-width: 768px) {
+    .wrapMain {
+        max-width: 750px;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapMain {
+        max-width: 550px;
+    }
+}
 
