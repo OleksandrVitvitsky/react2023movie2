@@ -1,5 +1,5 @@
 .header {
-    padding: 20px 40px;
+    padding: 20px 30px;
     border-radius: 20px 20px 0 0;
     align-items: center;
     display: flex;
@@ -27,7 +27,7 @@
     margin-top: -10px;
     font-size: 34px;
     background: url('../../../public/icons/logo.svg') 0 center/40px no-repeat;
-    padding-left: 45px;
+    padding-left: 25px;
     line-height: 60px;
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;

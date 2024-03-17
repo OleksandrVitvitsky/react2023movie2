@@ -6,7 +6,7 @@
 }
 
 .wrapMain {
-    max-width: 50%;
+    max-width: 40%;
     background-color: var(--bg-color-1);
     border-radius: 20px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, .2);
@@ -18,7 +18,7 @@
 @media screen and (max-width: 1220px) {
 
     .wrapMain {
-        max-width: 45%;
+        max-width: 35%;
 
     }
 

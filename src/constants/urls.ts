@@ -3,7 +3,7 @@ const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2FkN2JiOGJiYjZlYjQzYjFkZWI2ODNl
 const baseURL = 'https://api.themoviedb.org/3';
 const posterURL = 'https://image.tmdb.org/t/p/w500';
 
-
+const language='uk-UA';
 const discover = '/discover'
 const movie = '/movie';
 const genres = '/genre/movie/list';
@@ -28,5 +28,6 @@ export {
     baseURL,
     posterURL,
     urls,
-    token
+    token,
+    language
 }

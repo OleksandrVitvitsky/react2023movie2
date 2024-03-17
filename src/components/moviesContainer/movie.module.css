@@ -1,10 +1,48 @@
 .movieContainer{
     width: 85%;
+    height: 300px;
     display: flex;
     flex-wrap: wrap;
+    flex-shrink: 0;
+    justify-content: center;
 
 }
-.movieContainer img{
+.movieContainer img {
     width: 100%;
+    max-width: 100%;
     height: auto;
+
+    margin-bottom: 10px;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    overflow: hidden;
+    position: relative;
+    transition: .3s;
+    opacity: 1;
+
+}
+
+.movieTitle{
+    width: 185px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    text-align: center;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 14px;
+     white-space: nowrap;
+
+}
+.movieTitleOrig{
+    color: #8f95a3;
+    font-size: 11px;
+    margin: 0 3px;
+}
+.movieTitleContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

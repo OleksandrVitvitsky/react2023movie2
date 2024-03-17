@@ -3,9 +3,10 @@
 .mainMoviesContainer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    row-gap: 10px;
+    column-gap: 0;
     /*padding: 15px;*/
-    justify-content: center;
+    justify-items: center;
     align-items: center;
 }
 
