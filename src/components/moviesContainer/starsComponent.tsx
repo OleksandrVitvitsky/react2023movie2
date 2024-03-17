@@ -9,12 +9,12 @@ const StarsComponent : FC<IProps>  = ({rating}) => {
     return (
         <div>
             <StarRatings
-                rating={3.5}
+                rating={rating}
                 starRatedColor="orange"
                 // changeRating={(newRating) => console.log(newRating)}
                 numberOfStars={10}
                 name='rating'
-                starDimension='18px'
+                starDimension='17px'
                 starSpacing='1px'
             />
         </div>
