@@ -1,5 +1,5 @@
 
-export * from './respGenreDataInterface'
+export * from './respGenresInterface'
 export * from './genreInterface'
 export * from './prod_companiesInterface'
 export * from './prod_countriesInterface'

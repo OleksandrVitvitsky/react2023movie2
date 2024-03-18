@@ -4,8 +4,9 @@ import {FC, PropsWithChildren} from "react";
 
 interface IProps extends PropsWithChildren {
     rating: number
+    size: string
 }
-const StarsComponent : FC<IProps>  = ({rating}) => {
+const StarsComponent : FC<IProps>  = ({rating, size}) => {
     return (
         <div>
             <StarRatings
@@ -14,7 +15,7 @@ const StarsComponent : FC<IProps>  = ({rating}) => {
                 // changeRating={(newRating) => console.log(newRating)}
                 numberOfStars={10}
                 name='rating'
-                starDimension='17px'
+                starDimension={size+`px`}
                 starSpacing='1px'
             />
         </div>

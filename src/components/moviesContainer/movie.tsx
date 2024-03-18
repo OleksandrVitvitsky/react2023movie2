@@ -5,7 +5,7 @@ import {StarsComponent} from "./starsComponent";
 
 import css  from "./movie.module.css"
 import {urls} from "../../constants";
-import {getYear} from "../../hoc/globalFunc";
+import {globfunc_getYear} from "../../hoc/globalFunc";
 
 
 interface IProps extends PropsWithChildren {
@@ -26,14 +26,15 @@ const Movie: FC<IProps> = ({movie}) => {
             <div className={css.poster}><img src={urls.poster.base(poster_path)} alt={title}/>
             <div className={css.details}>
                 <h1>{title}</h1>
-                <h2>{getYear(release_date)} • {adult?`NC-17`:`PG`} • </h2>
+                <h2>{globfunc_getYear(release_date)} • {adult?`NC-17`:`PG`} • </h2>
                 <div className={css.rating}>
+                    <StarsComponent key={id} rating={vote_average} size={'10'}/>
                     {/*<i className={fas fa-star}></i>*/}
                     {/*<i className="fas fa-star"></i>*/}
                     {/*<i className="fas fa-star"></i>*/}
                     {/*<i className="fas fa-star"></i>*/}
                     {/*<i className="far fa-star"></i>*/}
-                    <span>4.2/5</span>
+                    <span>{(+vote_average).toFixed(1).toString()} / 10</span>
                 </div>
                 <div className={css.tags}>
                     <span className={css.tag}>Italian</span>
@@ -59,7 +60,7 @@ const Movie: FC<IProps> = ({movie}) => {
             </div>
             <div className={css.movieTitleContainer}>
                 {/*переробити потім вивід заголовку*/}
-                <StarsComponent key={id} rating={vote_average}/>
+                <StarsComponent key={id} rating={vote_average} size={'17'}/>
                 {languageEnTitle && <div className={css.movieTitle}>{title}</div>}
                 <div className={`${css.movieTitle} ${css.movieTitleOrig}`}>{original_title}</div>
 

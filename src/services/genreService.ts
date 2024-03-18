@@ -1,11 +1,11 @@
 import {apiService} from "./apiService";
-import {urls} from "../constants";
+import {language, urls} from "../constants";
 import {IRes} from "../types";
 
-import {IMovie, IPagination} from "../interfaces";
+import {IGenre, IMovie, IPagination, IGenres} from "../interfaces";
 
 const genreService = {
-    getAll: (): IRes<IPagination<IMovie>> => apiService.get(urls.genres.base)
+    getAll: (): IRes<IGenres<IGenre>> => apiService.get(urls.genres.base, {params: {language}})
 };
 
 export {

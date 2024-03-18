@@ -103,11 +103,12 @@
     margin-bottom: 15px;
     display: flex;
     gap: .25em;
+    align-items: center;
 }
 
-.details .rating i {
-    color: #e3c414;
-}
+/*.details .rating i {*/
+/*    color: #e3c414;*/
+/*}*/
 
 .details .rating span {
     margin-left: 0.25em;
