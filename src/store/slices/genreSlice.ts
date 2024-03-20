@@ -11,7 +11,7 @@ const initialState: IGenres<IGenre> = {
 
 
 const getAll = createAsyncThunk<IGenres<IGenre>>(
-    'movieSlice/getAll',
+    'genreSlice/getAll',
     async (_, {rejectWithValue}) => {
         try {
             const {data} = await genreService.getAll();

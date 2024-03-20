@@ -8,7 +8,7 @@ export interface IMovie {
     backdrop_path: string;
     belongs_to_collection: string;
     budget: number;
-    genres: IGenre[];
+    genre_ids: number[];
     homepage: string;
     id: number;
     imdb_id: string;

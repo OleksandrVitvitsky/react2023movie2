@@ -1,9 +1,10 @@
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkN2FkN2JiOGJiYjZlYjQzYjFkZWI2ODNlNTgxM2E5OSIsInN1YiI6IjY1ZTMyMjgyMWFkOTNiMDE4NjA2M2E0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RFGBqV8D-mE4hWK9IgXfgSmxhEJRoDrBxKDBGyWzs50';
+
 
 const baseURL = 'https://api.themoviedb.org/3';
 const posterURL = 'https://image.tmdb.org/t/p/w500';
 
-const language='uk-UA';
+
+
 const discover = '/discover'
 const movie = '/movie';
 const genres = '/genre/movie/list';
@@ -27,7 +28,5 @@ const urls = {
 export {
     baseURL,
     posterURL,
-    urls,
-    token,
-    language
+    urls
 }

@@ -17,7 +17,7 @@ const Movies = () => {
 
     useEffect(() => {
         dispatch(movieActions.getAll({page}))
-    }, [dispatch, page])
+    }, [ page])
 
     return (
         <div className={css.mainMoviesContainer}>
