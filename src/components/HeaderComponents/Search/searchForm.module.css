@@ -5,9 +5,10 @@
     line-height: 28px;
     align-items: center;
     position: relative;
-    width: 400px;
-    max-width: 400px;
+    width: 50%;
+    /*max-width: 400px;*/
     margin: auto 20px;
+    margin-left: 10%;
 }
 
 .input {

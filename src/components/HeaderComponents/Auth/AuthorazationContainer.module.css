@@ -1,0 +1,43 @@
+.headerButtonAuth{
+    /*padding: 0 40px;*/
+    transition: .3s;
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: #2b4d8d;
+    color: white;
+    font-size: 15px;
+    width: 50%;
+
+}
+.AuthorizationContainer{
+    width: 35vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.userImage{
+    list-style: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1.5px solid #fff;
+    background-image: url('../../../public/userImage.jpg');
+    background-size: cover;
+    background-position: center center;
+    margin-left: 10%;
+}
+/*.userImage img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+@media (max-width: 1440px) {
+    .headerButtonAuth{
+        width: 50%;
+    }
+}

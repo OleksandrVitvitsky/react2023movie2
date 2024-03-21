@@ -1,5 +1,5 @@
 import css from "./homePage.module.css";
-import {Filter, Footer, Header} from "../components";
+import {Filter, Footer, Header,} from "../components";
 import {Outlet} from "react-router-dom";
 import {MoviesPage} from "./moviesPage";
 import {useAppDispatch} from "../hooks/useAppDispatch";

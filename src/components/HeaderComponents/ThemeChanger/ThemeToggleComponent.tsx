@@ -5,9 +5,9 @@ import Switch from '@mui/material/Switch';
 
 
 // import css from './themeToggle.module.css'
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {useAppSelector} from "../../hooks/useAppSelector";
-import {themeActions} from "../../store";
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {useAppSelector} from "../../../hooks/useAppSelector";
+import {themeActions} from "../../../store";
 
 const MaterialUISwitch = styled(Switch)(({theme}) => ({
     width: 62,

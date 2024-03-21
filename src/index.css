@@ -36,4 +36,5 @@ code {
 
     --header-bg-color-light: #f5f8ff;
     --header-bg-color-dark: #283043;
+    --bgImage: url('../public/userImage.jpg');
 }
