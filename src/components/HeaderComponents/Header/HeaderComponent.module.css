@@ -4,7 +4,6 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    /*flex-shrink: 1;*/
     justify-content: space-around;
     background-image: none;
     width: 100%;
@@ -16,23 +15,20 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
+    flex-shrink: 1;
 }
 .headerFlexRightContainer{
     display: flex;
-    /*justify-content: space-between;*/
     width: 25%;
     align-items: center;
     justify-content: flex-end;
-
-
 }
 
 .logo {
     display: block;
     height: 43px;
     width: 25%;
-    color: #5a668c;
+    color: var(--header-title-logo-color);
     font-weight: 300;
     margin-top: -10px;
     font-size: 34px;
@@ -43,11 +39,12 @@
     -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
     text-align: center;
+    margin-right: 2vw;
 }
 
 .logo span {
     font-weight: 600;
-    color: var(--header-logo-color-1);
+    color: var(--header-title-text-color);
 }
 
 .header a:any-link {
