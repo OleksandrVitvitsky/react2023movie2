@@ -6,7 +6,7 @@ import {movieService} from "../../services";
 
 
 const initialState: IPagination<IMovie> = {
-    page: null,
+    page: 1,
     results: [],
     total_pages: null,
     total_results: null
@@ -14,11 +14,11 @@ const initialState: IPagination<IMovie> = {
 };
 
 
-const getAll = createAsyncThunk<IPagination<IMovie>, { page: number }>(
+const getAll = createAsyncThunk<IPagination<IMovie>, { currentPage: number }>(
     'movieSlice/getAll',
-    async ({page}, {rejectWithValue}) => {
+    async ({currentPage}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getAll(page.toString());
+            const {data} = await movieService.getAll(currentPage.toString());
             return data
         } catch (e) {
             const err = e as AxiosError

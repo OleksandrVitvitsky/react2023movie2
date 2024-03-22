@@ -5,11 +5,10 @@ import {MoviesPage} from "./moviesPage";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import {useEffect} from "react";
 import {genreActions, movieActions} from "../store";
+import {setAttrThemeMode} from "../hoc/globalFunc";
 
 const HomePage = () => {
-
-
-
+    setAttrThemeMode();
     return (
         <div className={css.wrap}>
             <div className={css.wrapMain}>

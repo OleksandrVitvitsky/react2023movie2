@@ -27,7 +27,7 @@
     border-radius: 50%;
     overflow: hidden;
     border: 1.5px solid #fff;
-    background-image: url('../../../public/userImage.jpg');
+    background-image: url('../../../../public/userImage.jpg');
     background-size: cover;
     background-position: center center;
     margin-left: 10%;

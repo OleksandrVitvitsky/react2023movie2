@@ -38,3 +38,12 @@ code {
     --header-bg-color-dark: #283043;
     --bgImage: url('../public/userImage.jpg');
 }
+
+
+html[themeMode='light']{
+
+}
+
+html[themeMode='light']{
+
+}

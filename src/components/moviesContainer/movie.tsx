@@ -36,7 +36,7 @@ const Movie: FC<IProps> = ({movie}) => {
                 <h2>{globalFunc_getYear(release_date)} • {adult?`NC-17`:`PG`} • </h2>
                 <div className={css.rating}>
                     <StarsComponent key={id} rating={vote_average} size={'10'} numberOfStars = {numberOfStars}/>
-                         <span>{(+vote_average).toFixed(1).toString()} /{numberOfStars}</span>
+                         <span>{(+vote_average).toFixed(1).toString()} / {numberOfStars}</span>
                 </div>
                 <div className={css.genres}>
                     {genresForWrapper.map(value => <GenreWrapperComponent key={value.id} name = {value.name}/>)}

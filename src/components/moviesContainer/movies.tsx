@@ -7,22 +7,22 @@ import {Movie} from "./movie";
 import css from './movies.module.css'
 
 const Movies = () => {
-
-    const {results: movies} = useAppSelector(state => state.movies)
     const dispatch = useAppDispatch();
+    const {results: movies} = useAppSelector(state => state.movies)
+    const {currentPage} = useAppSelector(state => state.moviePagination)
 
-    const [query, setQuery] = useSearchParams({page: '1'});
 
-    const page: number = +query.get('page');
+    // const [query, setQuery] = useSearchParams({page: '1'});
+    //
+    // const page: number = +query.get('page');
 
     useEffect(() => {
-        dispatch(movieActions.getAll({page}))
-    }, [page])
+        dispatch(movieActions.getAll({currentPage}))
+    }, [currentPage])
 
     return (
         <div className={css.mainMoviesContainer}>
             {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
-
         </div>
     );
 };

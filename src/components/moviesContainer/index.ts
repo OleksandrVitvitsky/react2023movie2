@@ -1,4 +1,4 @@
 export * from './movie'
-export * from './moviePagination'
+export * from './moviesPagination'
 export * from './movies'
 export * from './starsComponent'

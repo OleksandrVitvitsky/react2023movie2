@@ -1,0 +1,55 @@
+.buttonNavContainer{
+    margin: 3% 0;
+    width: 100%;
+    border: #2b4d8d;
+    text-align: center
+}
+
+.btnNavigation{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btnNavigation button , .btnNavigation span{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    margin: 0 10px 10px 0;
+    line-height: 50px;
+    min-width: 60px;
+    background-color: #d3daf1;
+    border-radius: 15px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    color: #193364;
+    font-family: Montserrat, serif;
+    cursor: pointer;
+}
+.btnNavigation span{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 32px;
+}
+
+button:hover {
+    background-color: #193364 !important;
+    color: #fb0 !important;
+}
+
+button:disabled {
+    background-color: #193364;
+    color: #fb0;
+    cursor: not-allowed;
+}
+
+button:active {
+    background-color: #f5f8ff;
+}
+.buttonPrevPage, .buttonNextPage{
+    background-color: #d3daf1 !important;
+    color: #193364 !important;
+}

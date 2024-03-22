@@ -8,7 +8,18 @@ const globalFunc_getYear = (fullDate:string):string => {
    return  genresList.filter(genre => genresFilterID.includes(genre.id));
 };
 
+function setAttrThemeMode() {
+    const themeMode = JSON.parse(localStorage.getItem('darkMode'));
+    if (themeMode){
+        document.documentElement.setAttribute('themeMode', "dark")
+    } else {
+        document.documentElement.setAttribute('themeMode', "light")
+    }
+}
+
+
 export {
     globalFunc_getYear,
-    getGenresByIDs
+    getGenresByIDs,
+    setAttrThemeMode
 }
