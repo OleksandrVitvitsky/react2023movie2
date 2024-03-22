@@ -25,6 +25,7 @@
     color: #0d0c22;
     box-shadow: 0 0 5px #c1cec0, 0 0 0 10px #f5f5f5eb;
     transition: .3s ease;
+    font-family: Montserrat, serif;
 }
 
 .input::placeholder {
@@ -34,9 +35,10 @@
 .icon {
     position: absolute;
     left: 1rem;
-    fill: #777;
+    fill:var(--header-search-icon-color);
     width: 1rem;
     height: 1rem;
+
 }
 
 

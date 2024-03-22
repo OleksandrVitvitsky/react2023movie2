@@ -26,24 +26,43 @@ code {
     box-sizing: border-box;
 }
 :root{
+    --bgImage: url('../public/userImage.jpg');
+    --header-button-auth-bg-color:#193364;
+}
+
+
+html[themeMode='light']{
+
+    --header-bg-color: #f5f8ff;
+    --header-title-logo-color: #193364;
+    --header-title-text-color: #5a668b;
+    --header-search-bg-color:#eaecef;
+    --header-search-placeholder-color:#0d0c22;
+    --header-search-icon-color:#0d0c22;
+    --movies-bg-color: #f5f8ff;
+    --movies-card-text-mainTitle-color:#0d0c22;
+    --movies-card-text-title-color:#7d7f83;
+    --movies-pagination-bg-color: #d3daf1;
+    --movies-pagination-text-color:#193364;
+
     /*--color-dark:#21213f;*/
     /*--color-light:#ffffff;*/
-    --body-color: #193364;
-    --bg-color-1: #fff;
-    --a-color-1: #193364;
-
-    --header-logo-color-1: #193364;
-
-    --header-bg-color-light: #f5f8ff;
-    --header-bg-color-dark: #283043;
-    --bgImage: url('../public/userImage.jpg');
+    /*--body-color: #193364;*/
+    /*--bg-color-1: #fff;*/
+    /*--a-color-1: #193364;*/
+    /*--header-logo-color-1: #193364;*/
 }
 
-
-html[themeMode='light']{
-
-}
-
-html[themeMode='light']{
-
+html[themeMode='dark']{
+    --header-bg-color: #283043;
+    --header-title-logo-color: #7d7f83;
+    --header-title-text-color: #5a668b;
+    --header-search-bg-color: #22272b;
+    --header-search-placeholder-color: #7b7e81;
+    --header-search-icon-color:#f5f8ff;
+    --movies-bg-color: #22272b;
+    --movies-card-text-mainTitle-color:#eaecef;
+    --movies-card-text-title-color: #6e7383;
+    --movies-pagination-bg-color: #535c73;
+    --movies-pagination-text-color: #d9d9d9;
 }

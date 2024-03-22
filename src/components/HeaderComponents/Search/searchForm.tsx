@@ -1,5 +1,6 @@
 import css from './searchForm.module.css'
 import {SubmitHandler, useForm} from "react-hook-form";
+import {useAppSelector} from "../../../hooks/useAppSelector";
 
 
 interface ISearch {
@@ -9,7 +10,8 @@ interface ISearch {
 const SearchForm = () => {
 
     const {reset, register, handleSubmit} = useForm<ISearch>();
-
+    const {darkMode} = useAppSelector(state => state.themeChanger);
+    console.log(darkMode);
     const onSubmit: SubmitHandler<ISearch> = async (searchText) => {
         console.log(searchText)
         // if (objSearch.querySearch === "") {
@@ -30,7 +32,6 @@ const SearchForm = () => {
 
     return (
         <form className={css.group} onSubmit={handleSubmit(onSubmit)}>
-            {/*<div className="group">*/}
             <svg className={css.icon} aria-hidden="true" viewBox="0 0 24 24">
                 <g>
                     <path
