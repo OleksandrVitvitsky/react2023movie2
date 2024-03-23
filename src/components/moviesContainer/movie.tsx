@@ -18,12 +18,13 @@ const Movie: FC<IProps> = ({movie}) => {
     const navigate = useNavigate();
     const {id,adult, genre_ids, popularity, poster_path,overview, title, release_date,original_title,vote_average} = movie;
 
-    console.log(movie);
+    // console.log(movie);
 
     const {genres:genresList} = useAppSelector(state => state.genres)
 
     const genresForWrapper = getGenresByIDs (genresList, genre_ids.slice(0, 3));
-     console.log(genresForWrapper);
+
+     // console.log(genresForWrapper);
 
     const languageEnTitle = true;
 

@@ -95,3 +95,13 @@
     padding: 15px 0 15px 15px;
     column-gap: 10px;
 }
+.movieDescKeys , .movieDescValues{
+    margin: 10px 0 10px 15px;
+}
+.movieDescKeys > p, .movieDescValues > p{
+    margin: 5px 0 5px 0px;
+    font: 350 15px Montserrat, sans-serif;
+}
+.movieDescKeys > p{
+    color: #8491BB;
+}

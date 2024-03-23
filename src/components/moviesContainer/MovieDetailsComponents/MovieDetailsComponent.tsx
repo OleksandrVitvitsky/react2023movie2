@@ -1,33 +1,32 @@
 import css from './movieDetails.module.css';
 import {useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import {movieDetailsActions} from "../../../store";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {urls} from "../../../constants";
 import {IMovie} from "../../../interfaces";
 import {useAppLocation} from "../../../hooks";
+import {getGenresByIDs, globalFunc_getYear} from "../../../hoc/globalFunc";
+import {GenreWrapperComponent} from "../../genreWrapperContainer";
 
 const MovieDetailsComponent = () => {
     const {state} = useAppLocation<{ movie: IMovie }>();
-    // console.log(state);
-    // console.log('----------')
+    const {genres:genresList} = useAppSelector(state => state.genres)
     const dispatch = useAppDispatch();
     const {movieDescription} = useAppSelector(state => state.movieDetails)
     const {id} = useParams<string>();
-    // console.log('----------')
-    //  console.log(movieDescription);
-    // console.log('----------')
 
     useEffect(() => {
-
         if (!movieDescription) {
             dispatch(movieDetailsActions.getById({id}));
         }
     }, [id, movieDescription])
+
     if (!movieDescription) {
         return <div></div>;
     }
+
     const {
         title,
         original_title,
@@ -37,9 +36,12 @@ const MovieDetailsComponent = () => {
         genre_ids,
         release_date,
         imdb_id,
-        homepage
+        homepage,
+        tagline
     } = movieDescription;
 
+    const movie_genres = getGenresByIDs (genresList, genre_ids);
+    const movie_year_release = +globalFunc_getYear(release_date);
     return (
         <div className={css.mainMovieDetailsContainer}>
             <div className={css.movieDetailsContainer}>
@@ -100,13 +102,15 @@ const MovieDetailsComponent = () => {
                             </div>
                             <div className={css.movieDescValues}>
                                 <p>
-                                    текстГасло
+                                    {tagline}
                                 </p>
                                 <p>
-                                    текстрік
+                                    <NavLink to={'movies'} state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>
                                 </p>
                                 <p>
-                                    текстжанр
+                                    {movie_genres.map(value =>
+                                        <NavLink to={'movies'}> {}</NavLink>
+                                    )}
                                 </p>
                                 <p>
                                     тексткраъна
