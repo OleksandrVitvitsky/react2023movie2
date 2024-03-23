@@ -1,0 +1,97 @@
+.mainContainerMovieDetails{
+    width: 100%;
+    height: 100%;
+    background-color: var(--movies-bg-color);
+}
+
+
+.movieDetailsContainer{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7dc00;
+
+}
+.movieDetailsDepiction{
+    display: flex;
+
+    width: 100%;
+    height: 65%;
+    background-color: var(--movies-bg-color);
+    padding: 1%;
+}
+.poster{
+    /*background-color: #d392c4;*/
+    position: relative;
+    top: 0;
+    left: 0;
+    /*width: 12vw;*/
+    height: 50vh;
+    min-width: 300px;
+    overflow: hidden;
+    padding: 14px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    border-radius: 18px;
+    flex-shrink: 1;
+
+}
+.poster img {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover ;
+    transition: .3s;
+    padding: 0 2px;
+
+}
+
+.movieHeader {
+    width: 100%;
+    padding: 15px 0 15px 15px;
+    font-family: Montserrat, serif;
+}
+
+.movieTitles {
+    width: 80%;
+    font-weight: 500;
+
+}
+
+.movieTitles h3{
+    font-weight: 400;
+    font-size: 1.1em;
+
+    opacity: .6;
+    padding-left: 5px;
+}
+.movieImdb_Adult {
+    width: 20%;
+    text-align: end;
+    padding: 15px 15px 0 15px;
+}
+
+.movieOverviewContainer {
+    width: 100%;
+    height: 45%;
+    background-color: #90aee0;
+    border-top: #0d0c22 dashed 1.5px;
+
+}
+.movieDescription{
+    flex-direction: column;
+    width: 100%;
+}
+.movieDescription, .movieDescrDetail, .movieDescKeys, .movieDescValues, .movieHeader{
+    display: flex;
+}
+.movieDescKeys,.movieDescValues{
+    flex-direction: column;
+}
+.movieDescrDetail{
+    padding: 15px 0 15px 15px;
+    column-gap: 10px;
+}

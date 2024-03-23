@@ -9,8 +9,8 @@ const initialState: IMoviePaginationState = {
 
 };
 
-const moviePaginationSlice = createSlice( {
-    name: 'moviePaginationSlice',
+const moviesPaginationSlice = createSlice( {
+    name: 'moviesPaginationSlice',
     initialState,
     reducers:{
         setCurrentPage: (state,action) => {
@@ -25,13 +25,13 @@ const moviePaginationSlice = createSlice( {
     }
 })
 
-const {reducer: moviePaginationReducer, actions} = moviePaginationSlice;
+const {reducer: moviesPaginationReducer, actions} = moviesPaginationSlice;
 
-const moviePaginationActions = {
+const moviesPaginationActions = {
     ...actions
 
 }
 export {
-    moviePaginationReducer,
-    moviePaginationActions
+    moviesPaginationReducer,
+    moviesPaginationActions
 }

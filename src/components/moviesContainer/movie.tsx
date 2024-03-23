@@ -28,28 +28,30 @@ const Movie: FC<IProps> = ({movie}) => {
     const languageEnTitle = true;
 
     return (
+        // <div className={css.movieCard} onClick={() => navigate('/movies/' + id.toString(), {state: {movie}})}>
         <div className={css.movieCard} onClick={() => navigate('/movies/' + id.toString(), {state: {movie}})}>
             {/*<img src={urls.poster.base(poster_path)} alt={title}/>*/}
             <div className={css.poster}><img src={urls.poster.base(poster_path)} alt={title}/>
-            <div className={css.details}>
-                <h1>{title}</h1>
-                <h2>{globalFunc_getYear(release_date)} • {adult?`NC-17`:`PG`} • </h2>
-                <div className={css.rating}>
-                    <StarsComponent key={id} rating={vote_average} size={'10'} numberOfStars = {numberOfStars}/>
-                         <span>{(+vote_average).toFixed(1).toString()} / {numberOfStars}</span>
-                </div>
-                <div className={css.genres}>
-                    {genresForWrapper.map(value => <GenreWrapperComponent key={value.id} name = {value.name}/>)}
-                </div>
-                <p className={css.desc}>
-                    {overview}
-                </p>
+                <div className={css.details}>
+                    <h1>{title}</h1>
+                    <h2>{globalFunc_getYear(release_date)} • {adult ? `NC-17` : `PG`} • </h2>
+                    <div className={css.rating}>
+                        <StarsComponent key={id} rating={vote_average} size={'10'} numberOfStars={numberOfStars}/>
+                        <span>{(+vote_average).toFixed(1).toString()} /
+                            {numberOfStars}</span>
+                    </div>
+                    <div className={css.genres}>
+                        {genresForWrapper.map(value => <GenreWrapperComponent key={value.id} name={value.name}/>)}
+                    </div>
+                    <p className={css.desc}>
+                        {overview}
+                    </p>
 
-            </div>
+                </div>
             </div>
             <div className={css.movieTitleContainer}>
                 {/*переробити потім вивід заголовку*/}
-                <StarsComponent key={id} rating={vote_average} size={'17'} numberOfStars = {numberOfStars}/>
+                <StarsComponent key={id} rating={vote_average} size={'17'} numberOfStars={numberOfStars}/>
                 {languageEnTitle && <div className={css.movieTitle}>{title}</div>}
                 <div className={`${css.movieTitle} ${css.movieTitleOrig}`}>{original_title}</div>
 

@@ -1,5 +1,5 @@
 .buttonNavContainer{
-    margin: 3% 0;
+    margin: 1% 0;
     width: 100%;
     border: #2b4d8d;
     text-align: center
@@ -51,5 +51,5 @@ button:active {
 }
 .buttonPrevPage, .buttonNextPage{
     background-color: #d3daf1 !important;
-    color: #193364 !important;
+    color: #fda400 !important;
 }

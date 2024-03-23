@@ -15,7 +15,7 @@ const initialState: IPagination<IMovie> = {
 
 
 const getAll = createAsyncThunk<IPagination<IMovie>, { currentPage: number }>(
-    'movieSlice/getAll',
+    'moviesSlice/getAll',
     async ({currentPage}, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getAll(currentPage.toString());
@@ -29,9 +29,9 @@ const getAll = createAsyncThunk<IPagination<IMovie>, { currentPage: number }>(
 
 
 
-const movieSlice = createSlice(
+const moviesSlice = createSlice(
     {
-        name: 'movieSlice',
+        name: 'moviesSlice',
         initialState,
         reducers: {},
         extraReducers: builder =>
@@ -48,16 +48,16 @@ const movieSlice = createSlice(
 );
 
 
-const {reducer: movieReducer, actions} = movieSlice;
+const {reducer: moviesReducer, actions} = moviesSlice;
 
-const movieActions = {
+const moviesActions = {
     ...actions,
     getAll
 
 }
 export {
-    movieReducer,
-    movieActions
+    moviesReducer,
+    moviesActions
 }
 
 

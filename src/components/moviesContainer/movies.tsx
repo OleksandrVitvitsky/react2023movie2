@@ -1,15 +1,14 @@
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {useEffect} from "react";
-import {movieActions} from "../../store";
-import {useSearchParams} from "react-router-dom";
+import {moviesActions} from "../../store";
 import {Movie} from "./movie";
 import css from './movies.module.css'
 
 const Movies = () => {
     const dispatch = useAppDispatch();
     const {results: movies} = useAppSelector(state => state.movies)
-    const {currentPage} = useAppSelector(state => state.moviePagination)
+    const {currentPage} = useAppSelector(state => state.moviesPagination)
 
 
     // const [query, setQuery] = useSearchParams({page: '1'});
@@ -17,7 +16,7 @@ const Movies = () => {
     // const page: number = +query.get('page');
 
     useEffect(() => {
-        dispatch(movieActions.getAll({currentPage}))
+        dispatch(moviesActions.getAll({currentPage}))
     }, [currentPage])
 
     return (

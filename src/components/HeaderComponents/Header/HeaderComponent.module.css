@@ -46,7 +46,11 @@
     font-weight: 600;
     color: var(--header-title-text-color);
 }
-
+.header a{
+    font-family: Montserrat, serif;
+    font-weight: 400;
+}
 .header a:any-link {
     cursor: pointer;
+
 }

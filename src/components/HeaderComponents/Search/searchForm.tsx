@@ -40,17 +40,7 @@ const SearchForm = () => {
             </svg>
             <input placeholder="Пошук..." type="search" className={css.input} {...register('querySearch')}
                    onSubmit={handleSubmit(onSubmit)}/>
-            {/*<button type="submit" className="search-btn"><span className="fal fa-search"></span></button>*/}
 
-            {/*</div>*/}
-
-
-            {/*// <div className={css.searchBox}>*/}
-            {/*// <input type="text" placeholder={'Пошук...'} {...register('querySearch')}/>*/}
-            {/*// <button type="submit">*/}
-            {/*// <span className="css.spanBtnSrch"></span>*/}
-            {/*// </button>*/}
-            {/*// </div>*/}
         </form>
 
 

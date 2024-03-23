@@ -1,6 +1,6 @@
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {moviePaginationActions} from "../../store";
+import {moviesPaginationActions} from "../../store";
 import css from './moviesPagination.module.css'
 import {total_pages} from "../../constants";
 
@@ -8,18 +8,18 @@ const MoviePagination = () => {
     const dispatch = useAppDispatch();
     // const {total_pages} = useAppSelector((state) => state.movies)
 
-    const {currentPage} = useAppSelector((statePag) => statePag.moviePagination)
+    const {currentPage} = useAppSelector((statePag) => statePag.moviesPagination)
 
 
     const goToPage = (pageNumber: number) => {
-        dispatch(moviePaginationActions.setCurrentPage(pageNumber));
+        dispatch(moviesPaginationActions.setCurrentPage(pageNumber));
     };
 
     const toNextPage = () => {
-        dispatch(moviePaginationActions.goToNextPage(currentPage));
+        dispatch(moviesPaginationActions.goToNextPage(currentPage));
     };
     const toPrevPage = () => {
-        dispatch(moviePaginationActions.goToPrevPage(currentPage));
+        dispatch(moviesPaginationActions.goToPrevPage(currentPage));
     };
 
     const createPaginationButtons = () => {
