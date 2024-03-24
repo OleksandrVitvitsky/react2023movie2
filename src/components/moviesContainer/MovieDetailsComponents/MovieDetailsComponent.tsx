@@ -4,11 +4,12 @@ import {NavLink, useParams} from "react-router-dom";
 import {movieDetailsActions} from "../../../store";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
-import {urls} from "../../../constants";
+import {numberOfStars, urls} from "../../../constants";
 import {IMovie} from "../../../interfaces";
 import {useAppLocation} from "../../../hooks";
-import {getGenresByIDs, globalFunc_getYear} from "../../../hoc/globalFunc";
+import {getGenresByIDs, getRuntime, globalFunc_getYear} from "../../../hoc/globalFunc";
 import {GenreWrapperComponent} from "../../genreWrapperContainer";
+import {StarsComponent} from "../starsComponent";
 
 const MovieDetailsComponent = () => {
     const {state} = useAppLocation<{ movie: IMovie }>();
@@ -18,17 +19,19 @@ const MovieDetailsComponent = () => {
     const {id} = useParams<string>();
 
     useEffect(() => {
-        if (!movieDescription) {
             dispatch(movieDetailsActions.getById({id}));
-        }
-    }, [id, movieDescription])
+    }, [id, state.movie])
 
-    if (!movieDescription) {
+    // console.log("aaaa" ,movieDescription);
+
+    if (!movieDescription || movieDescription.id !== state.movie.id) {
         return <div></div>;
     }
 
     const {
         title,
+        runtime,
+        vote_average,
         original_title,
         poster_path,
         overview,
@@ -75,62 +78,114 @@ const MovieDetailsComponent = () => {
                         </div>
                         {/*///////////////////////////////////////////////*/}
                         <div className={css.movieDescrDetail}>
-                            <div className={css.movieDescKeys}>
 
-                                <p>
-                                    Гасло
-                                </p>
-                                <p>
-                                    рік
-                                </p>
-                                <p>
-                                    жанр
-                                </p>
-                                <p>
-                                    краъна
-                                </p>
-                                <p>
-                                    дом сторынка
-                                </p>
-                                <p>
-                                    режисер
-                                </p>
-                                <p>
-                                    актори
-                                </p>
-                                <p>
-                                    Рейтинг
-                                </p>
+                            <div className={css.tagline}>
+                                <div>
+                                    <p>
+                                        Гасло:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        "{tagline}"
+                                    </p>
+                                </div>
+                            </div>
 
+                            <div className={css.year}>
+                                <div>
+                                    <p>
+                                        Рік:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        <NavLink to={'/movies'}
+                                                 state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>
+                                    </p>
+                                </div>
                             </div>
-                            <div className={css.movieDescValues}>
-                                <p>
-                                    {tagline}
-                                </p>
-                                <p>
-                                    <NavLink to={'/movies'} state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>
-                                </p>
-                                <p>
-                                    {/*{genres.map(value =>*/}
-                                    {/*    <NavLink to={'movies'}> {}</NavLink>*/}
-                                    {/*)}*/}
-                                </p>
-                                <p>
-                                    тексткраъна
-                                </p>
-                                <p>
-                                    текстДомСторынка
-                                </p>
-                                <p>
-                                    текстрежисер
-                                </p>
-                                <p>
-                                    текстактори
-                                </p>
-                                <p>
-                                    Зырочки
-                                </p>
+                            <div className={css.genre}>
+                                <div>
+                                    <p>
+                                        Жанр:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        {genres.map(genre =>
+                                            <NavLink to={'/movies'} state={{genre}}> {<GenreWrapperComponent
+                                                key={genre.id}
+                                                name={genre.name}/>}</NavLink>
+                                        )}
+                                    </p>
+                                </div>
                             </div>
+
+                            <div className={css.genre}>
+                                <div>
+                                    <p>
+                                        Країна:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        Будуть країни
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={css.homepage}>
+                                <div>
+                                    <p>
+                                        Сайт:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        {homepage}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={css.runtime}>
+                                <div>
+                                    <p>
+                                        Тривалість:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        {getRuntime(runtime)}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className={(css.casts)}>
+                                <div>
+                                    <p>
+                                        Актори:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        Будуть актори
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={(css.stars)}>
+                                <div>
+                                    <p>
+                                        Рейтинг:
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        <StarsComponent key={id} rating={vote_average} size={'25'}
+                                                                      numberOfStars={numberOfStars}/>
+                                    </p>
+                                </div>
+                            </div>
+
+
                         </div>
 
                     </div>

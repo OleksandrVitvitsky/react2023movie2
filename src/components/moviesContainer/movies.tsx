@@ -23,7 +23,7 @@ const Movies = () => {
             dispatch(moviesActions.getAll({currentPage}))
         }
     }, [currentPage, state])
-    console.log(movies);
+    // console.log(movies);
     return (
         <div className={css.mainMoviesContainer}>
             {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}

@@ -17,9 +17,18 @@ function setAttrThemeMode() {
     }
 }
 
+function getRuntime(time: number) {
+    if (time && time > 0) {
+        return Math.floor(time / 60) + " год. " + time % 60 + " хв."
+    } else {
+        return ""
+    }
+}
+
 
 export {
     globalFunc_getYear,
     getGenresByIDs,
-    setAttrThemeMode
+    setAttrThemeMode,
+    getRuntime
 }
