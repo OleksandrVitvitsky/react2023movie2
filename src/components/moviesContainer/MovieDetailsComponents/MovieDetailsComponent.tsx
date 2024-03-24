@@ -108,10 +108,10 @@ const MovieDetailsComponent = () => {
                                     {tagline}
                                 </p>
                                 <p>
-                                    <NavLink to={'movies'} state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>
+                                    <NavLink to={'/movies'} state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>
                                 </p>
                                 <p>
-                                    {/*{movieDescription.map(value =>*/}
+                                    {/*{genres.map(value =>*/}
                                     {/*    <NavLink to={'movies'}> {}</NavLink>*/}
                                     {/*)}*/}
                                 </p>

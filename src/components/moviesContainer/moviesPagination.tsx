@@ -2,11 +2,12 @@ import {useAppSelector} from "../../hooks/useAppSelector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {moviesPaginationActions} from "../../store";
 import css from './moviesPagination.module.css'
-import {total_pages} from "../../constants";
+import {max_total_pages} from "../../constants";
 
 const MoviePagination = () => {
     const dispatch = useAppDispatch();
-    // const {total_pages} = useAppSelector((state) => state.movies)
+     const {total_pages:totalPagesFromResp} = useAppSelector((state) => state.movies)
+     const total_pages = Math.min(totalPagesFromResp,max_total_pages);
 
     const {currentPage} = useAppSelector((statePag) => statePag.moviesPagination)
 
