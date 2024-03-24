@@ -1,5 +1,5 @@
 import {AxiosError} from "axios";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
 
 import {IMovie, IPagination,} from "../../interfaces";
 import {movieService} from "../../services";
@@ -26,7 +26,18 @@ const getAll = createAsyncThunk<IPagination<IMovie>, { currentPage: number }>(
         }
     }
 )
-
+const getByYear = createAsyncThunk<IPagination<IMovie>, { year: number }>(
+    'moviesSlice/getByYear',
+    async ({year}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getByYear(year.toString());
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response.data)
+        }
+    }
+)
 
 
 const moviesSlice = createSlice(
@@ -36,13 +47,21 @@ const moviesSlice = createSlice(
         reducers: {},
         extraReducers: builder =>
             builder
-                .addCase(getAll.fulfilled, (state, action) => {
-                    const {page, total_pages, total_results, results} = action.payload;
-                    state.page = page;
-                    state.results = results;
-                    state.total_pages = total_pages;
-                    state.total_results = total_results;
+                // .addCase(getAll.fulfilled, (state, action) => {
+                //     const {page, total_pages, total_results, results} = action.payload;
+                //     state.page = page;
+                //     state.results = results;
+                //     state.total_pages = total_pages;
+                //     state.total_results = total_results;
+                // })
+                .addMatcher(isFulfilled(getAll,getByYear), (state,action) => {
+                        const {page, total_pages, total_results, results} = action.payload;
+                        state.page = page;
+                        state.results = results;
+                        state.total_pages = total_pages;
+                        state.total_results = total_results;
                 })
+
 
     }
 );
@@ -52,8 +71,8 @@ const {reducer: moviesReducer, actions} = moviesSlice;
 
 const moviesActions = {
     ...actions,
-    getAll
-
+    getAll,
+    getByYear
 }
 export {
     moviesReducer,

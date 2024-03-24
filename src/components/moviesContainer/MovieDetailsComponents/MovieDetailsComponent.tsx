@@ -12,7 +12,7 @@ import {GenreWrapperComponent} from "../../genreWrapperContainer";
 
 const MovieDetailsComponent = () => {
     const {state} = useAppLocation<{ movie: IMovie }>();
-    const {genres:genresList} = useAppSelector(state => state.genres)
+    // const {genres:genresList} = useAppSelector(state => state.genres)
     const dispatch = useAppDispatch();
     const {movieDescription} = useAppSelector(state => state.movieDetails)
     const {id} = useParams<string>();
@@ -33,14 +33,17 @@ const MovieDetailsComponent = () => {
         poster_path,
         overview,
         adult,
-        genre_ids,
+        genres,
         release_date,
         imdb_id,
         homepage,
         tagline
     } = movieDescription;
+    // console.log('------------')
+    // console.log(movieDescription);
+    // console.log('------------')
+    // const movie_genres = getGenresByIDs (genresList, genre_ids);
 
-    const movie_genres = getGenresByIDs (genresList, genre_ids);
     const movie_year_release = +globalFunc_getYear(release_date);
     return (
         <div className={css.mainMovieDetailsContainer}>
@@ -108,9 +111,9 @@ const MovieDetailsComponent = () => {
                                     <NavLink to={'movies'} state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>
                                 </p>
                                 <p>
-                                    {movie_genres.map(value =>
-                                        <NavLink to={'movies'}> {}</NavLink>
-                                    )}
+                                    {/*{movieDescription.map(value =>*/}
+                                    {/*    <NavLink to={'movies'}> {}</NavLink>*/}
+                                    {/*)}*/}
                                 </p>
                                 <p>
                                     тексткраъна

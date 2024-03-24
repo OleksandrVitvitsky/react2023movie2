@@ -11,14 +11,18 @@ const Movies = () => {
     const {results: movies} = useAppSelector(state => state.movies)
     const {currentPage} = useAppSelector(state => state.moviesPagination)
     const {state} = useAppLocation<{ movie_year_release: number }>();
-
+    const year:number = state?.movie_year_release;
     // const [query, setQuery] = useSearchParams({page: '1'});
     //
     // const page: number = +query.get('page');
 
     useEffect(() => {
-        dispatch(moviesActions.getAll({currentPage}))
-    }, [currentPage])
+        if (year) {
+            dispatch(moviesActions.getByYear({year}))
+        }else{
+            dispatch(moviesActions.getAll({currentPage}))
+        }
+    }, [currentPage, state])
 
     return (
         <div className={css.mainMoviesContainer}>

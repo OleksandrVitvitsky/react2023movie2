@@ -9,6 +9,7 @@ export interface IMovie {
     belongs_to_collection: string;
     budget: number;
     genre_ids: number[];
+    genres:IGenre[];
     homepage: string;
     id: number;
     imdb_id: string;
