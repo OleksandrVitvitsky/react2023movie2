@@ -1,0 +1,23 @@
+.castContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+
+}
+.castContainer img{
+    border-radius: 50%;
+    border: 1px solid var(--movies-card-text-title-color);
+    height: 55px;
+    width: auto;
+}
+.castContainer p{
+    color: var(--movies-card-text-mainTitle-color);
+    font: 200 12px Montserrat, serif;
+    margin: 3px;
+    text-align: center;
+}

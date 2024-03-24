@@ -1,4 +1,4 @@
-import {IGenre} from "../interfaces";
+import {IGenre, IProd_countriesInterface} from "../interfaces";
 
 const globalFunc_getYear = (fullDate:string):string => {
    return  fullDate && fullDate? new Date(fullDate).getFullYear().toString() : '';
@@ -26,9 +26,14 @@ function getRuntime(time: number) {
 }
 
 
+function findCountryByICO(countries:IProd_countriesInterface[],isoCode:string) {
+    return countries.find(country => country.iso_3166_1 === isoCode)
+}
+
 export {
     globalFunc_getYear,
     getGenresByIDs,
     setAttrThemeMode,
-    getRuntime
+    getRuntime,
+    findCountryByICO
 }

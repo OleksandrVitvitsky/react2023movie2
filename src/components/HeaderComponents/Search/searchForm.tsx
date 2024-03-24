@@ -10,23 +10,23 @@ interface ISearch {
 const SearchForm = () => {
 
     const {reset, register, handleSubmit} = useForm<ISearch>();
-    const {darkMode} = useAppSelector(state => state.themeChanger);
-    console.log(darkMode);
-    const onSubmit: SubmitHandler<ISearch> = async (searchText) => {
-        console.log(searchText)
-        // if (objSearch.querySearch === "") {
-        //     reset()
-        //     return
-        // }
-        //
-        // try {
-        //     await movieService.search(objSearch.querySearch).then(({data}) => setMovies(data.results))
-        // } catch (e) {
-        //     setError(true)
-        // }
-        // reset();
 
-        // }
+
+    const onSubmit: SubmitHandler<ISearch> = async (searchText) => {
+
+        if (searchText.querySearch === "") {
+            reset()
+            return
+        }
+
+        try {
+            await movieService.search(objSearch.querySearch).then(({data}) => setMovies(data.results))
+        } catch (e) {
+            setError(true)
+        }
+        reset();
+
+        }
 
     }
 

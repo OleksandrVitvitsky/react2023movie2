@@ -18,12 +18,9 @@ const Movie: FC<IProps> = ({movie}) => {
 
     const languageEnTitle = true;
     const navigate = useNavigate();
-    const {id,adult, genre_ids, popularity, poster_path,overview, title, release_date,original_title,vote_average} = movie;
+    const {id,adult, genre_ids,  poster_path,overview, title, release_date,original_title,vote_average} = movie;
     const {genres:genresList} = useAppSelector(state => state.genres)
     const genresForWrapper = getGenresByIDs (genresList, genre_ids.slice(0, 3));
-
-
-
     return (
         <div className={css.movieCard} onClick={() => navigate('/movies/' + id.toString(), {state: {movie}})}>
             {/*<img src={urls.poster.base(poster_path)} alt={title}/>*/}

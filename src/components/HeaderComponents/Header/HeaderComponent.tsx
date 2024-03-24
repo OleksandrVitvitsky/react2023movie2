@@ -13,10 +13,7 @@ import {AuthorizationContainer} from "../Auth";
 
 const Header = () => {
 
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        dispatch(genreActions.getAll())
-    }, [])
+
 
     return (
         <div className={css.header}>
