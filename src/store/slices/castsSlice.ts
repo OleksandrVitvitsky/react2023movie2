@@ -1,7 +1,7 @@
 import {AxiosError} from "axios";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {castsService, movieService} from "../../services";
+import {castsService} from "../../services";
 
 import {ICastsInterface} from "../../interfaces/castsInterface";
 import {ICast} from "../../interfaces/castInterface";

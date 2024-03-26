@@ -10,8 +10,8 @@ import {genreActions} from "../store";
 import css from './MainLayot.module.css'
 
 const MainLayout = () => {
-    setAttrThemeMode();
     const dispatch = useAppDispatch();
+    setAttrThemeMode();
     const {darkMode} = useAppSelector(state => state.themeChanger)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const MainLayout = () => {
 
     useEffect(() => {
         dispatch(genreActions.getAll())
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={css.wrap}>

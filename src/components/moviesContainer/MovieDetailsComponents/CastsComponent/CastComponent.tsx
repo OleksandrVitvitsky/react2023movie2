@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const CastComponent: FC<IProps> = ({cast}) => {
-    const {name, popularity, profile_path} = cast;
+    const {name,  profile_path} = cast;
     return (
         <div className={css.castContainer}>
             <img src={urls.poster.base(profile_path)} alt={name}/>

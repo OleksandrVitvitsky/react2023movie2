@@ -1,7 +1,7 @@
 import {AxiosError} from "axios";
 import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
 
-import {IGenre, IGenres, IMovie, IPagination,} from "../../interfaces";
+import {IGenre, IMovie, IPagination,} from "../../interfaces";
 import {movieService} from "../../services";
 
 
