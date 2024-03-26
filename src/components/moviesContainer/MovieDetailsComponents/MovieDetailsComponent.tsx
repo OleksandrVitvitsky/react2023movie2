@@ -1,7 +1,7 @@
 import css from './movieDetails.module.css';
 import {useEffect} from "react";
 import {NavLink, useParams} from "react-router-dom";
-import {castsActions, countriesActions, movieDetailsActions} from "../../../store";
+import {castsActions, countriesActions, movieDetailsActions, moviesPaginationActions} from "../../../store";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {imdbURL, numberOfStars, urls} from "../../../constants";
@@ -50,7 +50,6 @@ const MovieDetailsComponent = () => {
         original_title,
         poster_path,
         overview,
-        adult,
         genres,
         release_date,
         imdb_id,
@@ -59,10 +58,12 @@ const MovieDetailsComponent = () => {
         production_countries
     } = movieDescription;
 
+    const handleNavLinkGenreClick = () => {
+        dispatch(moviesPaginationActions.setCurrentPage(1))
+    }
+    // console.log(111,movieDescription);
 
-
-
-    const movie_year_release = +globalFunc_getYear(release_date);
+    // const movie_year_release = +globalFunc_getYear(release_date);
     return (
         <div className={css.mainMovieDetailsContainer}>
             <div className={css.movieDetailsContainer}>
@@ -83,19 +84,16 @@ const MovieDetailsComponent = () => {
                                 </h3>
                             </div>
                             <div className={css.movieImdb_Adult}>
-                                <div >
-                                    <a className={css.movieImdb} href={`${imdbURL}${imdb_id}`} target={'_blank'}>IMDB</a>
-
+                                <div>
+                                    <a className={css.movieImdb} href={`${imdbURL}${imdb_id}`}
+                                       target={'_blank'}>IMDB</a>
                                 </div>
-                                {/*<div className={css.movieAdult}>*/}
-                                {/*    Adult*/}
-                                {/*</div>*/}
                             </div>
                         </div>
-                        {/*///////////////////////////////////////////////*/}
                         <div className={css.movieDescrDetail}>
-
-                            <div >
+                            {tagline &&
+                                (
+                                    <div>
                                 <div>
                                     <p>
                                         Гасло:
@@ -107,6 +105,8 @@ const MovieDetailsComponent = () => {
                                     </p>
                                 </div>
                             </div>
+                                )
+                            }
 
                             <div >
                                 <div>
@@ -117,6 +117,8 @@ const MovieDetailsComponent = () => {
                                 <div className={css.year}>
                                     <p>
                                         {globalFunc_getYear(release_date)}
+
+                                        {/*фільтр не працює належним чином. Api віддає якусь фігню*/}
                                         {/*<NavLink to={'/movies'}*/}
                                         {/*         state={{movie_year_release}}> {globalFunc_getYear(release_date)}</NavLink>*/}
                                     </p>
@@ -131,9 +133,12 @@ const MovieDetailsComponent = () => {
                                 <div>
                                     <p>
                                         {genres.map(genre =>
-                                            <NavLink to={'/movies'} className={css.genre} state={{genre}}> {<GenreWrapperComponent
-                                                key={genre.id}
-                                                name={genre.name}/>}</NavLink>
+                                            <NavLink to={'/movies'} className={css.genre}
+                                                     onClick={handleNavLinkGenreClick} state={{genreSearch:genre}}> {
+                                                <GenreWrapperComponent
+                                                    key={genre.id}
+                                                    name={genre.name}/>}
+                                            </NavLink>
                                         )}
                                     </p>
                                 </div>
@@ -147,12 +152,10 @@ const MovieDetailsComponent = () => {
                                 </div>
                                 <div className={css.country}>
                                     <p>
-                                          {production_countries.map(country =>
-                                            // <NavLink to={'/movies'} className={css.country} state={{country}}>
-                                                <span >
-                                                    {findCountryByICO(countriesState,country.iso_3166_1).native_name}
+                                        {production_countries.map(country =>
+                                            <span>
+                                                    {findCountryByICO(countriesState, country.iso_3166_1).native_name}
                                                 </span>
-                                            // </NavLink>
                                         )}
                                     </p>
                                 </div>
@@ -210,8 +213,6 @@ const MovieDetailsComponent = () => {
                                     </p>
                                 </div>
                             </div>
-
-
                         </div>
 
                     </div>

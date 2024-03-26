@@ -1,7 +1,7 @@
 import {AxiosError} from "axios";
 import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
 
-import {IMovie, IPagination,} from "../../interfaces";
+import {IGenre, IGenres, IMovie, IPagination,} from "../../interfaces";
 import {movieService} from "../../services";
 
 
@@ -26,11 +26,23 @@ const getAll = createAsyncThunk<IPagination<IMovie>, { currentPage: number }>(
         }
     }
 )
-const getByYear = createAsyncThunk<IPagination<IMovie>, { year: number }>(
-    'moviesSlice/getByYear',
-    async ({year}, {rejectWithValue}) => {
+const getByGenre = createAsyncThunk<IPagination<IMovie>, { currentPage: number,genre: IGenre }>(
+    'moviesSlice/getByGenre',
+    async ({currentPage, genre}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getByYear(year.toString());
+            const {data} = await movieService.getByGenreId(currentPage.toString(),genre.id.toString());
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response.data)
+        }
+    }
+)
+const search = createAsyncThunk<IPagination<IMovie>, { currentPage: number,searchText:string }>(
+    'moviesSlice/search',
+    async ({currentPage, searchText}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.search(currentPage.toString(),searchText);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -39,22 +51,23 @@ const getByYear = createAsyncThunk<IPagination<IMovie>, { year: number }>(
     }
 )
 
-
 const moviesSlice = createSlice(
     {
         name: 'moviesSlice',
         initialState,
-        reducers: {},
+        reducers: {
+            setResponce: (state, action) => {
+                const {page, total_pages, total_results, results} = action.payload;
+                state.page = page;
+                state.results = results;
+                state.total_pages = total_pages;
+                state.total_results = total_results;
+            }
+        },
         extraReducers: builder =>
             builder
-                // .addCase(getAll.fulfilled, (state, action) => {
-                //     const {page, total_pages, total_results, results} = action.payload;
-                //     state.page = page;
-                //     state.results = results;
-                //     state.total_pages = total_pages;
-                //     state.total_results = total_results;
-                // })
-                .addMatcher(isFulfilled(getAll,getByYear), (state,action) => {
+
+                .addMatcher(isFulfilled(getAll,getByGenre,search), (state,action) => {
                         const {page, total_pages, total_results, results} = action.payload;
                         state.page = page;
                         state.results = results;
@@ -72,7 +85,8 @@ const {reducer: moviesReducer, actions} = moviesSlice;
 const moviesActions = {
     ...actions,
     getAll,
-    getByYear
+    getByGenre,
+    search
 }
 export {
     moviesReducer,

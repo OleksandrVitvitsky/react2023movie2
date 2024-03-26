@@ -1,35 +1,46 @@
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {useAppSelector} from "../../hooks/useAppSelector";
 import {useEffect} from "react";
-import {moviesActions} from "../../store";
+import {dataLoadingActions, moviesActions} from "../../store";
 import {Movie} from "./movie";
 import css from './movies.module.css'
 import {useAppLocation} from "../../hooks";
+import {IGenre} from "../../interfaces";
+import {useParams} from "react-router-dom";
 
 const Movies = () => {
     const dispatch = useAppDispatch();
     const {results: movies} = useAppSelector(state => state.movies)
-    const {currentPage} = useAppSelector(state => state.moviesPagination)
-    // const {state} = useAppLocation<{ movie_year_release: number }>();
-    // const year:number = state?.movie_year_release;
+    const {dataLoaded} = useAppSelector(state => state.dataLoadingReducer)
 
-    // const [query, setQuery] = useSearchParams({page: '1'});
-    //
-    // const page: number = +query.get('page');
+    const {currentPage} = useAppSelector(state => state.moviesPagination)
+    const {state: searchByGenreState} = useAppLocation<{ genreSearch: IGenre }>();
+    const {state: searchByNameState} = useAppLocation<{ searchText: string }>();
+
+    const genre: IGenre = searchByGenreState?.genreSearch;
+    const searchText: string = searchByNameState?.searchText;
 
     useEffect(() => {
-        // if (year) {
-        //
-        //     dispatch(moviesActions.getByYear({year}))
-        // }else{
+        if (genre) {
+            dispatch(moviesActions.getByGenre({currentPage, genre}))
+                .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
+        } else if (searchText) {
+            dispatch(moviesActions.search({currentPage, searchText}))
+               .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
+        } else {
             dispatch(moviesActions.getAll({currentPage}))
-        // }
-    }, [currentPage])
-    // console.log(movies);
+                .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
+        }
+    }, [currentPage, genre, searchText])
+
     return (
-        <div className={css.mainMoviesContainer}>
-            {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
-        </div>
+        <>
+            {dataLoaded && (
+                <div className={css.mainMoviesContainer}>
+                    {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+                </div>
+            )}
+        </>
     );
 };
 

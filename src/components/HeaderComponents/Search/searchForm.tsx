@@ -1,6 +1,10 @@
 import css from './searchForm.module.css'
 import {SubmitHandler, useForm} from "react-hook-form";
 import {useAppSelector} from "../../../hooks/useAppSelector";
+import { useState } from 'react';
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {moviesActions, moviesPaginationActions} from "../../../store";
+import {useNavigate} from "react-router-dom";
 
 
 interface ISearch {
@@ -8,27 +12,33 @@ interface ISearch {
 
 }
 const SearchForm = () => {
-
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const {currentPage} = useAppSelector(state => state.moviesPagination)
     const {reset, register, handleSubmit} = useForm<ISearch>();
+    const [, setError] = useState<boolean>();
+    const response = useAppSelector(state => state.movies)
 
-
-    const onSubmit: SubmitHandler<ISearch> = async (searchText) => {
-
-        if (searchText.querySearch === "") {
+    const onSubmit: SubmitHandler<ISearch> =  (searchText) => {
+        const {querySearch} = searchText;
+        if (querySearch === "") {
             reset()
             return
         }
-
+        //
         try {
-            await movieService.search(objSearch.querySearch).then(({data}) => setMovies(data.results))
+            dispatch(moviesPaginationActions.setCurrentPage(1));
+            // await dispatch(moviesActions.search({currentPage, searchText: querySearch}));
+            // dispatch(moviesActions.setResponce(response));
+            navigate('movies', {state: {searchText:querySearch}})
         } catch (e) {
             setError(true)
         }
         reset();
 
-        }
-
     }
+
+
 
     return (
         <form className={css.group} onSubmit={handleSubmit(onSubmit)}>

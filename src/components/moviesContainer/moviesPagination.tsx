@@ -6,11 +6,14 @@ import {max_total_pages} from "../../constants";
 
 const MoviePagination = () => {
     const dispatch = useAppDispatch();
-     const {total_pages:totalPagesFromResp} = useAppSelector((state) => state.movies)
-     const total_pages = Math.min(totalPagesFromResp,max_total_pages);
-
+    const {total_pages: totalPagesFromResp} = useAppSelector((state) => state.movies)
+    const total_pages = Math.min(totalPagesFromResp, max_total_pages);
+    const {results: movies} = useAppSelector(state => state.movies)
     const {currentPage} = useAppSelector((statePag) => statePag.moviesPagination)
 
+    if (!movies){
+        return <div></div>;
+    }
 
     const goToPage = (pageNumber: number) => {
         dispatch(moviesPaginationActions.setCurrentPage(pageNumber));
@@ -25,18 +28,9 @@ const MoviePagination = () => {
 
     const createPaginationButtons = () => {
         const buttons = [];
-        const maxVisiblePages = 10; // Кількість видимих кнопок
+        const maxVisiblePages = 10;
 
-        // // Логіка для кнопок 1 ... 10 ... totalPages
-        // if (totalPages <= maxVisiblePages) {
-        //     for (let i = 1; i <= totalPages; i++) {
-        //         buttons.push(
-        //             <button key={i} onClick={() => handleGoToPage(i)} disabled={currentPage === i}>
-        //                 {i}
-        //             </button>
-        //         );
-        //     }
-        // } else {
+
             const start = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
             const end = Math.min(total_pages, start + maxVisiblePages - 1);
 

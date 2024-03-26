@@ -5,8 +5,9 @@ import {
     themeReducer,
     moviesPaginationReducer,
     movieDetailsReducer,
-    countriesReducer, castsReducer
+    countriesReducer, castsReducer, dataLoadingReducer
 } from "./slices";
+
 
 
 
@@ -19,7 +20,8 @@ const store = configureStore({
         moviesPagination: moviesPaginationReducer,
         movieDetails: movieDetailsReducer,
         countries: countriesReducer,
-        casts: castsReducer
+        casts: castsReducer,
+        dataLoadingReducer
     }
 })
 

@@ -1,0 +1,59 @@
+.footer {
+    padding: 20px 30px;
+    border-radius: 20px 20px 0 0;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-image: none;
+    width: 100%;
+}
+
+
+.footerFlexLeftContainer{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 1;
+    color: var(--movies-card-text-mainTitle-color);
+}
+.fooFlexRightContainer{
+    display: flex;
+    width: 25%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.logo {
+    display: block;
+    height: 43px;
+    width:5%;
+    color: var(--header-title-logo-color);
+    font-weight: 300;
+    margin-top: -10px;
+    font-size: 34px;
+    background: url('../../../public/icons/logo.svg') 0 center/40px no-repeat;
+    padding-left: 25px;
+    line-height: 60px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+    text-align: center;
+    /*margin-right: 2vw;*/
+}
+
+.logo span {
+    font-weight: 600;
+    color: var(--header-title-text-color);
+}
+.footer a{
+    font-family: Montserrat, serif;
+    font-weight: 400;
+    text-decoration: none;
+    color: #e57b07;
+}
+.footer a:any-link {
+    cursor: pointer;
+
+}
