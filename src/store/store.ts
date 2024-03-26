@@ -5,7 +5,7 @@ import {
     themeReducer,
     moviesPaginationReducer,
     movieDetailsReducer,
-    countriesReducer, castsReducer, dataLoadingReducer
+    countriesReducer, castsReducer, dataLoadingReducer, movieVideoReducer
 } from "./slices";
 
 
@@ -21,7 +21,8 @@ const store = configureStore({
         movieDetails: movieDetailsReducer,
         countries: countriesReducer,
         casts: castsReducer,
-        dataLoadingReducer
+        dataLoadingReducer,
+        movieVideos: movieVideoReducer
     }
 })
 

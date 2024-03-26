@@ -21,6 +21,14 @@
     background-color: var(--movies-bg-color);
     padding: 1%;
 }
+
+.videoContainer{
+    padding: 1%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .poster{
 
     position: relative;

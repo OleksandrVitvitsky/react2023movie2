@@ -6,7 +6,9 @@ name:string
 
 const GenreWrapperComponent: FC<IProps> = ({name}) => {
     return (
-        <span>{name}</span>
+        <span>{name}
+
+        </span>
     );
 };
 

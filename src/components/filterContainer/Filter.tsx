@@ -4,11 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-
-import {GenreWrapperComponent} from "../genreWrapperContainer";
-
-import css from './filter.module.css'
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {moviesPaginationActions} from "../../store";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
 import {IGenre} from "../../interfaces";
@@ -31,45 +27,33 @@ const Filter = () => {
         // dispatch(moviesPaginationActions.setCurrentPage(1))
     };
     const bgcolorBox:string = !darkMode ? 'background.paper' : '#22272b';
-    const textcolorBox:string = !darkMode ? 'primary.main':'common.white' ;
+    const textcolorBox:string = !darkMode ? 'warning.main':'common.white' ;
     return (
-<div>
-        <Box sx={{ maxWidth: { xs: 320, sm: 3500}, bgcolor: bgcolorBox, color : textcolorBox}}>
-            <Tabs
-                value={value}
-                onChange={handleChange}
-                variant="scrollable"
-                scrollButtons="auto"
-                aria-label="scrollable auto tabs example"
-            >
-                {genresList.map(genre =>
-                    // <NavLink to={'/movies'} onClick={handleNavLinkGenreClick} state={{genreSearch: genre}}>
-                        <Tab sx={{
+        <div>
+            <Box sx={{maxWidth: {xs: 320, sm: 3500}, bgcolor: bgcolorBox, color: textcolorBox}}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="scrollable"
+                    scrollButtons="auto"
+                    aria-label="scrollable auto tabs example"
+                >
+                    {genresList.map(genre =>
 
-                    bgcolor: bgcolorBox,
-                    color : textcolorBox
-                }}
-                             label={genre.name} value={genre} />
-                    // </NavLink>
-                )}
-                {/*<Tab label="Item Two" />*/}
-                {/*<Tab label="Item Three" />*/}
-                {/*<Tab label="Item Four" />*/}
-                {/*<Tab label="Item Five" />*/}
-                {/*<Tab label="Item Six" />*/}
-                {/*<Tab label="Item Seven" />*/}
-            </Tabs>
-        </Box>
-</div>
-        // {genresList.map(genre =>
-        // <NavLink to={'/movies'} className={css.item}
-        //          onClick={handleNavLinkGenreClick} state={{genreSearch: genre}}> {
-                //     <GenreWrapperComponent
-                //         key={genre.id}
-                //         name={genre.name}/>}
-                //
-                // </NavLink>
-            // )}
+                            <Tab
+                                sx={{
+                                    bgcolor: bgcolorBox,
+                                    color: textcolorBox,
+                                    fontWeight: 'medium'
+                                }}
+                                label={genre.name}
+                                value={genre}
+                            />
+
+                    )}
+                </Tabs>
+            </Box>
+        </div>
 
 
     );

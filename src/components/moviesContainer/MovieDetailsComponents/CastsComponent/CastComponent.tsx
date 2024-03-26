@@ -1,10 +1,10 @@
 import {FC, useEffect} from 'react';
-import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {castsActions} from "../../../store";
-import {ICast} from "../../../interfaces/castInterface";
-import {urls} from "../../../constants";
-import css from'./castComponent.module.css'
+import {useAppDispatch} from "../../../../hooks/useAppDispatch";
+import {useAppSelector} from "../../../../hooks/useAppSelector";
+import {castsActions} from "../../../../store";
+import {ICast} from "../../../../interfaces/castInterface";
+import {urls} from "../../../../constants";
+import css from './castComponent.module.css'
 
 interface IProps {
     cast: ICast

@@ -6,3 +6,4 @@ export * from './movieDetailsSlice'
 export * from './countrySlice'
 export * from './castsSlice'
 export * from'./loadingSlice'
+export * from'./movieVideoSlice';

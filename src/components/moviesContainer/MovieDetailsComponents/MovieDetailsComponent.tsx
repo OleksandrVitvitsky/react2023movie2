@@ -1,45 +1,55 @@
 import css from './movieDetails.module.css';
 import {useEffect} from "react";
 import {NavLink, useParams} from "react-router-dom";
-import {castsActions, countriesActions, movieDetailsActions, moviesPaginationActions} from "../../../store";
+import {
+    castsActions,
+    countriesActions,
+    movieDetailsActions,
+    moviesPaginationActions, movieVideoActions
+} from "../../../store";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
-import {imdbURL, numberOfStars, urls} from "../../../constants";
+import {imdbURL, numberOfStars, urls, youtubeURL} from "../../../constants";
 import {IMovie} from "../../../interfaces";
 import {useAppLocation} from "../../../hooks";
 import {findCountryByICO, getRuntime, globalFunc_getYear} from "../../../hoc/globalFunc";
 import {GenreWrapperComponent} from "../../genreWrapperContainer";
 import {StarsComponent} from "../starsComponent";
-import {CastComponent} from "../CastsComponent";
-
+import {CastComponent} from "./CastsComponent";
+import Badge from '@mui/material/Badge';
+import {Movie} from "../movie";
 const MovieDetailsComponent = () => {
     const {state} = useAppLocation<{ movie: IMovie }>();
 
     const dispatch = useAppDispatch();
 
     const {movieDescription} = useAppSelector(state => state.movieDetails)
-    const{countries:countriesState} = useAppSelector(state => state.countries)
-    const {cast:casts} = useAppSelector(state => state.casts);
-
+    const {countries: countriesState} = useAppSelector(state => state.countries)
+    const {cast: casts} = useAppSelector(state => state.casts);
+    const {results: videos} = useAppSelector(state => state.movieVideos);
+    console.log(111,videos);
     const {id} = useParams<string>();
 
-    useEffect(() => {
-        dispatch(countriesActions.getAll())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(countriesActions.getAll())
+    // }, [])
 
     useEffect(() => {
-            dispatch(movieDetailsActions.getById({id}));
+        dispatch(movieDetailsActions.getById({id}));
+        dispatch(castsActions.getByMovieId({id}));
+        dispatch(countriesActions.getAll());
+        dispatch(movieVideoActions.getVideoByMovieId({id}));
     }, [id, state.movie])
 
 
 
 
-    useEffect(() => {
-        dispatch(castsActions.getByMovieId({id }));
-    }, [id]);
+    // useEffect(() => {
+    //     dispatch(castsActions.getByMovieId({id }));
+    // }, [id]);
 
 
-    if (!movieDescription||!countriesState || movieDescription.id !== state.movie.id) {
+    if (!movieDescription || !countriesState || movieDescription.id !== state.movie.id) {
         return <div></div>;
     }
 
@@ -61,9 +71,8 @@ const MovieDetailsComponent = () => {
     const handleNavLinkGenreClick = () => {
         dispatch(moviesPaginationActions.setCurrentPage(1))
     }
-    // console.log(111,movieDescription);
 
-    // const movie_year_release = +globalFunc_getYear(release_date);
+
     return (
         <div className={css.mainMovieDetailsContainer}>
             <div className={css.movieDetailsContainer}>
@@ -86,7 +95,7 @@ const MovieDetailsComponent = () => {
                             <div className={css.movieImdb_Adult}>
                                 <div>
                                     <a className={css.movieImdb} href={`${imdbURL}${imdb_id}`}
-                                       target={'_blank'}>IMDB</a>
+                                       target={'_blank'}>IMDB {(+vote_average).toFixed(1).toString()}</a>
                                 </div>
                             </div>
                         </div>
@@ -94,21 +103,21 @@ const MovieDetailsComponent = () => {
                             {tagline &&
                                 (
                                     <div>
-                                <div>
-                                    <p>
-                                        Гасло:
-                                    </p>
-                                </div>
-                                <div className={css.tagline}>
-                                    <p>
-                                        {tagline ? `"${tagline}"` : ``}
-                                    </p>
-                                </div>
-                            </div>
+                                        <div>
+                                            <p>
+                                                Гасло:
+                                            </p>
+                                        </div>
+                                        <div className={css.tagline}>
+                                            <p>
+                                                {tagline ? `"${tagline}"` : ``}
+                                            </p>
+                                        </div>
+                                    </div>
                                 )
                             }
 
-                            <div >
+                            <div>
                                 <div>
                                     <p>
                                         Рік:
@@ -124,7 +133,7 @@ const MovieDetailsComponent = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div >
+                            <div>
                                 <div>
                                     <p>
                                         Жанр:
@@ -133,12 +142,22 @@ const MovieDetailsComponent = () => {
                                 <div>
                                     <p>
                                         {genres.map(genre =>
-                                            <NavLink to={'/movies'} className={css.genre}
-                                                     onClick={handleNavLinkGenreClick} state={{genreSearch:genre}}> {
-                                                <GenreWrapperComponent
-                                                    key={genre.id}
-                                                    name={genre.name}/>}
-                                            </NavLink>
+
+                                            <Badge badgeContent={genre.id} color="warning" key={genre.id}
+                                                   sx={{
+                                                       fontSize: '1.2rem', // Змінюємо розмір шрифту
+                                                       padding: '5px',     // Змінюємо відступи
+                                                       margin: '7px'       // Змінюємо відступи
+                                                   }}
+                                            >
+                                                <NavLink to={'/movies'} className={css.genre}
+                                                         onClick={handleNavLinkGenreClick}
+                                                         state={{genreSearch: genre}}> {
+                                                    <GenreWrapperComponent
+                                                        key={genre.id}
+                                                        name={genre.name}/>}
+                                                </NavLink>
+                                            </Badge>
                                         )}
                                     </p>
                                 </div>
@@ -161,7 +180,7 @@ const MovieDetailsComponent = () => {
                                 </div>
                             </div>
 
-                           <div >
+                            <div>
                                 <div>
                                     <p>
                                         Сайт:
@@ -169,7 +188,7 @@ const MovieDetailsComponent = () => {
                                 </div>
                                 <div>
                                     <p>
-                                        <a href={homepage} target ='_blank'  className={css.homepage} >{homepage} </a>
+                                        <a href={homepage} target='_blank' className={css.homepage}>{homepage} </a>
                                     </p>
                                 </div>
                             </div>
@@ -187,7 +206,7 @@ const MovieDetailsComponent = () => {
                                 </div>
                             </div>
 
-                            <div >
+                            <div>
                                 <div className={css.castsTitle}>
                                     <p>
                                         Актори:
@@ -195,7 +214,7 @@ const MovieDetailsComponent = () => {
                                 </div>
                                 <div className={css.castsEvents}>
                                     {/*<p>*/}
-                                        {casts.slice(0,7).map(cast => <CastComponent key={id} cast={cast}/>)}
+                                    {casts.slice(0, 7).map(cast => <CastComponent key={id} cast={cast}/>)}
 
                                     {/*</p>*/}
                                 </div>
@@ -209,7 +228,7 @@ const MovieDetailsComponent = () => {
                                 <div>
                                     <p>
                                         <StarsComponent key={id} rating={vote_average} size={'25'}
-                                                                      numberOfStars={numberOfStars}/>
+                                                        numberOfStars={numberOfStars}/>
                                     </p>
                                 </div>
                             </div>
@@ -220,7 +239,18 @@ const MovieDetailsComponent = () => {
                 <div className={css.movieOverviewContainer}>
                     {overview}
                 </div>
+                {videos.length > 0  && (
+                    <div className={css.videoContainer}>
+                        <iframe width="1280" height="720" src={youtubeURL + videos[0].key}
+                                title={videos[0].name} frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    </div>
+                )}
+
+
             </div>
+
         </div>
 
     )
