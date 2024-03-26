@@ -1,24 +1,22 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IMovie, IPagination} from "../../interfaces";
-import {IRes} from "../../types";
-import {castsService, movieService} from "../../services";
 import {AxiosError} from "axios";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
+import {castsService, movieService} from "../../services";
+
 import {ICastsInterface} from "../../interfaces/castsInterface";
 import {ICast} from "../../interfaces/castInterface";
 
-const initialState:ICastsInterface<ICast>  = {
-      id: null,
-      cast: []
-
+const initialState: ICastsInterface<ICast> = {
+    id: null,
+    cast: []
 
 };
 
-const getByMovieId = createAsyncThunk<ICastsInterface<ICast>, {id: string }> (
+const getByMovieId = createAsyncThunk<ICastsInterface<ICast>, { id: string }>(
     'castsSlice/getByMovieId',
     async ({id}, {rejectWithValue}) => {
         try {
             const {data} = await castsService.getByMovieID(id);
-            // console.log(data);
             return data
         } catch (e) {
             const err = e as AxiosError

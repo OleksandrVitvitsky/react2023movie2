@@ -1,6 +1,6 @@
-import css from "./footer.module.css";
+import css from "./FooterComponent.module.css";
 
-const Footer = () => {
+const FooterComponent = () => {
     return (
         <div className={css.footer}>
             <div className={css.footerFlexLeftContainer}>
@@ -14,4 +14,4 @@ const Footer = () => {
     );
 };
 
-export {Footer};
+export {FooterComponent};

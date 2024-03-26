@@ -1,12 +1,13 @@
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {useAppSelector} from "../../hooks/useAppSelector";
 import {useEffect} from "react";
-import {dataLoadingActions, moviesActions} from "../../store";
-import {Movie} from "./movie";
+
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {useAppSelector} from "../../../hooks/useAppSelector";
+import {dataLoadingActions, moviesActions} from "../../../store";
+import {MovieComponent} from "../MovieComponent";
+import {useAppLocation} from "../../../hooks";
+import {IGenre} from "../../../interfaces";
+
 import css from './movies.module.css'
-import {useAppLocation} from "../../hooks";
-import {IGenre} from "../../interfaces";
-import {useParams} from "react-router-dom";
 
 const Movies = () => {
     const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ const Movies = () => {
                 .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
         } else if (searchText) {
             dispatch(moviesActions.search({currentPage, searchText}))
-               .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
+                .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
         } else {
             dispatch(moviesActions.getAll({currentPage}))
                 .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
@@ -37,7 +38,7 @@ const Movies = () => {
         <>
             {dataLoaded && (
                 <div className={css.mainMoviesContainer}>
-                    {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+                    {movies.map(movie => <MovieComponent key={movie.id} movie={movie}/>)}
                 </div>
             )}
         </>

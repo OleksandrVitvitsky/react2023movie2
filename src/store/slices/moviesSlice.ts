@@ -26,11 +26,11 @@ const getAll = createAsyncThunk<IPagination<IMovie>, { currentPage: number }>(
         }
     }
 )
-const getByGenre = createAsyncThunk<IPagination<IMovie>, { currentPage: number,genre: IGenre }>(
+const getByGenre = createAsyncThunk<IPagination<IMovie>, { currentPage: number, genre: IGenre }>(
     'moviesSlice/getByGenre',
     async ({currentPage, genre}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.getByGenreId(currentPage.toString(),genre.id.toString());
+            const {data} = await movieService.getByGenreId(currentPage.toString(), genre.id.toString());
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -38,11 +38,11 @@ const getByGenre = createAsyncThunk<IPagination<IMovie>, { currentPage: number,g
         }
     }
 )
-const search = createAsyncThunk<IPagination<IMovie>, { currentPage: number,searchText:string }>(
+const search = createAsyncThunk<IPagination<IMovie>, { currentPage: number, searchText: string }>(
     'moviesSlice/search',
     async ({currentPage, searchText}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.search(currentPage.toString(),searchText);
+            const {data} = await movieService.search(currentPage.toString(), searchText);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -67,12 +67,12 @@ const moviesSlice = createSlice(
         extraReducers: builder =>
             builder
 
-                .addMatcher(isFulfilled(getAll,getByGenre,search), (state,action) => {
-                        const {page, total_pages, total_results, results} = action.payload;
-                        state.page = page;
-                        state.results = results;
-                        state.total_pages = total_pages;
-                        state.total_results = total_results;
+                .addMatcher(isFulfilled(getAll, getByGenre, search), (state, action) => {
+                    const {page, total_pages, total_results, results} = action.payload;
+                    state.page = page;
+                    state.results = results;
+                    state.total_pages = total_pages;
+                    state.total_results = total_results;
                 })
 
 

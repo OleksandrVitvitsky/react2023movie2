@@ -1,44 +1,38 @@
-import css from './searchForm.module.css'
-import {SubmitHandler, useForm} from "react-hook-form";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import { useState } from 'react';
-import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {moviesActions, moviesPaginationActions} from "../../../store";
+import {useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import {SubmitHandler, useForm} from "react-hook-form";
 
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {moviesPaginationActions} from "../../../store";
+
+import css from './SearchFormComponent.module.css'
 
 interface ISearch {
     querySearch: string
 
 }
-const SearchForm = () => {
+
+const SearchFormComponent = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const {currentPage} = useAppSelector(state => state.moviesPagination)
     const {reset, register, handleSubmit} = useForm<ISearch>();
     const [, setError] = useState<boolean>();
-    const response = useAppSelector(state => state.movies)
 
-    const onSubmit: SubmitHandler<ISearch> =  (searchText) => {
+    const onSubmit: SubmitHandler<ISearch> = (searchText) => {
         const {querySearch} = searchText;
         if (querySearch === "") {
             reset()
             return
         }
-        //
+
         try {
             dispatch(moviesPaginationActions.setCurrentPage(1));
-            // await dispatch(moviesActions.search({currentPage, searchText: querySearch}));
-            // dispatch(moviesActions.setResponce(response));
-            navigate('movies', {state: {searchText:querySearch}})
+            navigate('movies', {state: {searchText: querySearch}})
         } catch (e) {
             setError(true)
         }
         reset();
-
     }
-
-
 
     return (
         <form className={css.group} onSubmit={handleSubmit(onSubmit)}>
@@ -50,11 +44,8 @@ const SearchForm = () => {
             </svg>
             <input placeholder="Пошук..." type="search" className={css.input} {...register('querySearch')}
                    onSubmit={handleSubmit(onSubmit)}/>
-
         </form>
-
-
     )
 };
 
-export {SearchForm};
+export {SearchFormComponent};

@@ -24,7 +24,6 @@ const getAll = createAsyncThunk<IGenres<IGenre>>(
 )
 
 
-
 const genreSlice = createSlice(
     {
         name: 'genreSlice',

@@ -1,6 +1,7 @@
-import css from './movieDetails.module.css';
 import {useEffect} from "react";
 import {NavLink, useParams} from "react-router-dom";
+import Badge from '@mui/material/Badge';
+
 import {
     castsActions,
     countriesActions,
@@ -13,43 +14,30 @@ import {imdbURL, numberOfStars, urls, youtubeURL} from "../../../constants";
 import {IMovie} from "../../../interfaces";
 import {useAppLocation} from "../../../hooks";
 import {findCountryByICO, getRuntime, globalFunc_getYear} from "../../../hoc/globalFunc";
-import {GenreWrapperComponent} from "../../genreWrapperContainer";
-import {StarsComponent} from "../starsComponent";
+import {GenreComponent} from "../../GenreContainer";
+import {StarsComponent} from "../StarsComponent/starsComponent";
 import {CastComponent} from "./CastsComponent";
-import Badge from '@mui/material/Badge';
-import {Movie} from "../movie";
+
+import css from './MovieDetailsComponent.module.css';
+
 const MovieDetailsComponent = () => {
-    const {state} = useAppLocation<{ movie: IMovie }>();
-
     const dispatch = useAppDispatch();
-
+    const {state} = useAppLocation<{ movie: IMovie }>();
     const {movieDescription} = useAppSelector(state => state.movieDetails)
     const {countries: countriesState} = useAppSelector(state => state.countries)
     const {cast: casts} = useAppSelector(state => state.casts);
     const {results: videos} = useAppSelector(state => state.movieVideos);
-    console.log(111,videos);
-    const {id} = useParams<string>();
 
-    // useEffect(() => {
-    //     dispatch(countriesActions.getAll())
-    // }, [])
+    const {id} = useParams<string>();
 
     useEffect(() => {
         dispatch(movieDetailsActions.getById({id}));
         dispatch(castsActions.getByMovieId({id}));
         dispatch(countriesActions.getAll());
         dispatch(movieVideoActions.getVideoByMovieId({id}));
-    }, [id, state.movie])
+    }, [id])
 
-
-
-
-    // useEffect(() => {
-    //     dispatch(castsActions.getByMovieId({id }));
-    // }, [id]);
-
-
-    if (!movieDescription || !countriesState || movieDescription.id !== state.movie.id) {
+    if (!movieDescription || !countriesState || (state?.movie && movieDescription.id !== state.movie.id)) {
         return <div></div>;
     }
 
@@ -81,7 +69,6 @@ const MovieDetailsComponent = () => {
                         <img src={urls.poster.base(poster_path)} alt={title}/>
                     </div>
                     <div className={css.movieDescription}>
-
                         {/*HEADER*/}
                         <div className={css.movieHeader}>
                             <div className={css.movieTitles}>
@@ -145,15 +132,15 @@ const MovieDetailsComponent = () => {
 
                                             <Badge badgeContent={genre.id} color="warning" key={genre.id}
                                                    sx={{
-                                                       fontSize: '1.2rem', // Змінюємо розмір шрифту
-                                                       padding: '5px',     // Змінюємо відступи
-                                                       margin: '7px'       // Змінюємо відступи
+                                                       fontSize: '1.2rem',
+                                                       padding: '5px',
+                                                       margin: '7px'
                                                    }}
                                             >
                                                 <NavLink to={'/movies'} className={css.genre}
                                                          onClick={handleNavLinkGenreClick}
                                                          state={{genreSearch: genre}}> {
-                                                    <GenreWrapperComponent
+                                                    <GenreComponent
                                                         key={genre.id}
                                                         name={genre.name}/>}
                                                 </NavLink>
@@ -213,10 +200,7 @@ const MovieDetailsComponent = () => {
                                     </p>
                                 </div>
                                 <div className={css.castsEvents}>
-                                    {/*<p>*/}
                                     {casts.slice(0, 7).map(cast => <CastComponent key={id} cast={cast}/>)}
-
-                                    {/*</p>*/}
                                 </div>
                             </div>
                             <div className={(css.stars)}>
@@ -233,13 +217,12 @@ const MovieDetailsComponent = () => {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className={css.movieOverviewContainer}>
                     {overview}
                 </div>
-                {videos.length > 0  && (
+                {videos.length > 0 && (
                     <div className={css.videoContainer}>
                         <iframe width="1280" height="720" src={youtubeURL + videos[0].key}
                                 title={videos[0].name} frameBorder="0"
@@ -247,12 +230,8 @@ const MovieDetailsComponent = () => {
                                 referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     </div>
                 )}
-
-
             </div>
-
         </div>
-
     )
 }
 

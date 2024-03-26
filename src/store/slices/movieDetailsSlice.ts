@@ -1,24 +1,22 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IMovie, IPagination} from "../../interfaces";
-import {IRes} from "../../types";
-import {movieService} from "../../services";
 import {AxiosError} from "axios";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
+import {IMovie} from "../../interfaces";
+import {movieService} from "../../services";
+
 interface IStateMovieDetails {
     movieDescription: IMovie
 }
 
 const initialState: IStateMovieDetails = {
     movieDescription: null,
-
-
 };
 
-const getById = createAsyncThunk<IMovie, {id: string }> (
+const getById = createAsyncThunk<IMovie, { id: string }>(
     'movieDetailsSlice/getById',
     async ({id}, {rejectWithValue}) => {
         try {
             const {data} = await movieService.getById(id);
-            // console.log(data);
             return data
         } catch (e) {
             const err = e as AxiosError
@@ -26,7 +24,6 @@ const getById = createAsyncThunk<IMovie, {id: string }> (
         }
     }
 )
-
 
 
 const movieDetailsSlice = createSlice(
@@ -37,20 +34,15 @@ const movieDetailsSlice = createSlice(
         extraReducers: builder =>
             builder
                 .addCase(getById.fulfilled, (state, action) => {
-                     state.movieDescription = action.payload;
-                    // console.log('****************************')
-                    // console.log(action.payload)
-                    // console.log('****************************')
-
+                    state.movieDescription = action.payload;
                 })
-
     }
 );
 
 
 const {reducer: movieDetailsReducer, actions} = movieDetailsSlice;
 
-const  movieDetailsActions = {
+const movieDetailsActions = {
     ...actions,
     getById
 

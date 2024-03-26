@@ -3,11 +3,10 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-
-// import css from './themeToggle.module.css'
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {themeActions} from "../../../store";
+
 
 const MaterialUISwitch = styled(Switch)(({theme}) => ({
     width: 62,
@@ -60,10 +59,10 @@ const MaterialUISwitch = styled(Switch)(({theme}) => ({
 const ThemeToggle = () => {
     const dispatch = useAppDispatch();
     const {darkMode} = useAppSelector(state => state.themeChanger);
-const handleChecked = () => {
-    dispatch(themeActions.changeDarkMode(!darkMode));
-    localStorage.setItem('darkMode', JSON.stringify(!darkMode));
-}
+    const handleChecked = () => {
+        dispatch(themeActions.changeDarkMode(!darkMode));
+        localStorage.setItem('darkMode', JSON.stringify(!darkMode));
+    }
 
     return (
         <div>

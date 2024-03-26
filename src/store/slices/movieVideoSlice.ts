@@ -1,10 +1,8 @@
 import {AxiosError} from "axios";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {IGenre, IGenres, IMovieVideos, IVideo} from "../../interfaces";
-import {genreService, movieService} from "../../services";
-import {ICastsInterface} from "../../interfaces/castsInterface";
-import {ICast} from "../../interfaces/castInterface";
+import {IMovieVideos, IVideo} from "../../interfaces";
+import {movieService} from "../../services";
 
 
 const initialState: IMovieVideos<IVideo> = {
@@ -38,8 +36,6 @@ const movieVideoSlice = createSlice(
                 .addCase(getVideoByMovieId.fulfilled, (state, action) => {
                     const {results} = action.payload;
                     state.results = results;
-
-
                 })
 
     }

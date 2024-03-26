@@ -1,10 +1,10 @@
 import {FC} from 'react';
 
 interface IProps {
-name:string
+    name: string
 }
 
-const GenreWrapperComponent: FC<IProps> = ({name}) => {
+const GenreComponent: FC<IProps> = ({name}) => {
     return (
         <span>{name}
 
@@ -12,4 +12,4 @@ const GenreWrapperComponent: FC<IProps> = ({name}) => {
     );
 };
 
-export {GenreWrapperComponent};
+export {GenreComponent};

@@ -4,13 +4,13 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {IProd_countriesInterface} from "../../interfaces";
 
 import {countriesService} from "../../services/countriesService";
+
 interface IState<T> {
     countries: T[]
 }
 
 const initialState: IState<IProd_countriesInterface> = {
-    countries: null,
-
+    countries: null
 };
 
 
@@ -19,14 +19,13 @@ const getAll = createAsyncThunk<IProd_countriesInterface[]>(
     async (_, {rejectWithValue}) => {
         try {
             const {data} = await countriesService.getAll();
-             return data
+            return data
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response.data)
         }
     }
 )
-
 
 
 const countriesSlice = createSlice(
