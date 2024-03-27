@@ -32,7 +32,7 @@ const Movies = () => {
             dispatch(moviesActions.getAll({currentPage}))
                 .then(() => dispatch(dataLoadingActions.setDataLoaded(true)))
         }
-    }, [currentPage, genre, searchText])
+    }, [currentPage, genre, searchText,dispatch])
 
     return (
         <>
