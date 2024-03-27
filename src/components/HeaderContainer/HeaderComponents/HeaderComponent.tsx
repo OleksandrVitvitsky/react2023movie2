@@ -1,8 +1,8 @@
 import css from './HeaderComponent.module.css'
 
-import {SearchFormComponent} from "../SearchContainer";
-import {ThemeToggle} from "../ThemeChangerContainer";
-import {AuthorizationComponent} from "../AuthContainer";
+import {SearchFormComponent} from "../SearchComponents";
+import {ThemeToggle} from "../ThemeChangerComponents";
+import {AuthorizationComponent} from "../AuthComponents";
 
 const Header = () => {
     return (

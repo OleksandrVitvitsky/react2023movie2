@@ -1,5 +1,5 @@
 export * from './moviesContainer'
-export * from './HeaderComponents'
+export * from './HeaderContainer'
 export * from './FilterContainer'
 export * from './FooterContainer'
 export * from './GenreContainer'

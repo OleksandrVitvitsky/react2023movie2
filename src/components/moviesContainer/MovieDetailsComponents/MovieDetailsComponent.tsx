@@ -16,7 +16,7 @@ import {useAppLocation} from "../../../hooks";
 import {findCountryByICO, getRuntime, globalFunc_getYear} from "../../../hoc/globalFunc";
 import {GenreComponent} from "../../GenreContainer";
 import {StarsComponent} from "../StarsComponent";
-import {CastComponent} from "./CastsComponent";
+import {CastComponent} from "./CastsComponents";
 
 import css from './MovieDetailsComponent.module.css';
 
